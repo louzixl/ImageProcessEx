@@ -114,6 +114,10 @@ SOURCE=.\ImageProcessExView.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\LinearTransDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\MainFrm.cpp
 # End Source File
 # Begin Source File
@@ -148,6 +152,10 @@ SOURCE=.\ImageProcessExDoc.h
 # Begin Source File
 
 SOURCE=.\ImageProcessExView.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\LinearTransDlg.h
 # End Source File
 # Begin Source File
 

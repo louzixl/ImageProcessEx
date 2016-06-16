@@ -152,29 +152,5 @@ void CImageProcessExView::OnRawtobmp()
 void CImageProcessExView::OnLinearenhence() 
 {
 	// TODO: Add your command handler code here
-	//文件类型说明字符串
-	static char BASED_CODE filedlg1[] = "BMP Files(*.BMP)|*.bmp|所有文件(*.*)|*.*||";
-	//文件对话框初始化，这里的第一个参数TRUE表示以打开方式显示文件对话框
-	CFileDialog SelectFile1(TRUE, NULL, NULL, OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT, filedlg1, NULL);
-	//弹出文件打开对话框
-	SelectFile1.DoModal();
-	//得到所选文件路径（包括文件名）
-	CString FileName1;
-	FileName1 = SelectFile1.GetPathName();
-
-	CFile file1, file2;
-	file1.Open(FileName1, CFile::modeCreate|CFile::modeWrite|CFile::shareExclusive, NULL);
-	CDib linearTrans;
-	linearTrans.Read(file1);
-	linearTrans.LinearTransform(0, 255);
-
-	static char BASED_CODE filedlg2[] = "BMP Files(*.bmp)|*.bmp|所有文件(*.*)|*.*||";
-	CFileDialog SelectFile2(FALSE, "BMP", NULL, OFN_HIDEREADONLY|OFN_OVERWRITEPROMPT, filedlg2, NULL);
-	SelectFile2.DoModal();
-	CString FileName2;
-	FileName2 = SelectFile2.GetPathName();
-	file2.Open(FileName2, CFile::modeCreate|CFile::modeWrite|CFile::shareExclusive, NULL);
-	linearTrans.Save(file2);
-	file1.Close();
-	file2.Close();
+	
 }

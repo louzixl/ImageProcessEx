@@ -6,36 +6,6 @@
 --------------------Configuration: ImageProcessEx - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSPBCE0.tmp" with contents
-[
-/nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/ImageProcessEx.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"F:\PRACTICE\VC++6.0_PRACTICE\ImageProcessEx\ImageProcessExView.cpp"
-"F:\PRACTICE\VC++6.0_PRACTICE\ImageProcessEx\RowToBmpDlg.cpp"
-]
-Creating command line "cl.exe @"C:\Users\建生\AppData\Local\Temp\RSPBCE0.tmp"" 
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSPBCE1.tmp" with contents
-[
-/nologo /subsystem:windows /incremental:yes /pdb:"Debug/ImageProcessEx.pdb" /debug /machine:I386 /out:"Debug/ImageProcessEx.exe" /pdbtype:sept 
-".\Debug\ChildFrm.obj"
-".\Debug\dib.obj"
-".\Debug\ImageProcessEx.obj"
-".\Debug\ImageProcessExDoc.obj"
-".\Debug\ImageProcessExView.obj"
-".\Debug\MainFrm.obj"
-".\Debug\RowToBmpDlg.obj"
-".\Debug\StdAfx.obj"
-".\Debug\ImageProcessEx.res"
-]
-Creating command line "link.exe @"C:\Users\建生\AppData\Local\Temp\RSPBCE1.tmp""
-<h3>Output Window</h3>
-Compiling...
-ImageProcessExView.cpp
-RowToBmpDlg.cpp
-Generating Code...
-Linking...
-Creating command line "bscmake.exe /nologo /o"Debug/ImageProcessEx.bsc"  ".\Debug\StdAfx.sbr" ".\Debug\ChildFrm.sbr" ".\Debug\dib.sbr" ".\Debug\ImageProcessEx.sbr" ".\Debug\ImageProcessExDoc.sbr" ".\Debug\ImageProcessExView.sbr" ".\Debug\MainFrm.sbr" ".\Debug\RowToBmpDlg.sbr""
-Creating browse info file...
-<h3>Output Window</h3>
 
 
 

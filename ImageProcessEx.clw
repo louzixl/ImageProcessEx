@@ -2,26 +2,28 @@
 
 [General Info]
 Version=1
-LastClass=CImageProcessExView
+LastClass=CLinearTransDlg
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "ImageProcessEx.h"
 LastPage=0
 
-ClassCount=7
+ClassCount=8
 Class1=CImageProcessExApp
 Class2=CImageProcessExDoc
 Class3=CImageProcessExView
 Class4=CMainFrame
 
-ResourceCount=4
-Resource1=IDR_IMAGEPTYPE
-Resource2=IDD_ABOUTBOX
-Resource3=IDR_MAINFRAME
+ResourceCount=5
+Resource1=IDR_MAINFRAME
+Resource2=IDD_DIALOG_RAWTOBMP
+Resource3=IDR_IMAGEPTYPE
 Class5=CChildFrame
 Class6=CAboutDlg
 Class7=CRowToBmpDlg
-Resource4=IDD_DIALOG_RAWTOBMP
+Resource4=IDD_ABOUTBOX
+Class8=CLinearTransDlg
+Resource5=IDD_DIALOG_LINEARTRANS
 
 [CLS:CImageProcessExApp]
 Type=0
@@ -44,7 +46,7 @@ ImplementationFile=ImageProcessExView.cpp
 Filter=C
 BaseClass=CScrollView
 VirtualFilter=VWC
-LastObject=ID_LINEARENHENCE
+LastObject=CImageProcessExView
 
 
 [CLS:CMainFrame]
@@ -182,5 +184,27 @@ ImplementationFile=RowToBmpDlg.cpp
 BaseClass=CDialog
 Filter=D
 LastObject=CRowToBmpDlg
+VirtualFilter=dWC
+
+[DLG:IDD_DIALOG_LINEARTRANS]
+Type=1
+Class=CLinearTransDlg
+ControlCount=8
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_STATIC_LINEARINPUT,static,1342308352
+Control4=IDC_EDIT_LINEARINPUT,edit,1350631552
+Control5=IDC_BUTTON_LINEARINPUT,button,1342242816
+Control6=IDC_STATIC_LINEAROUTPUT,static,1342308352
+Control7=IDC_EDIT_LINEAROUTPUT,edit,1350631552
+Control8=IDC_BUTTON_LINEAROUTPUT,button,1342242816
+
+[CLS:CLinearTransDlg]
+Type=0
+HeaderFile=LinearTransDlg.h
+ImplementationFile=LinearTransDlg.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=CLinearTransDlg
 VirtualFilter=dWC
 
