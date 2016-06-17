@@ -36,6 +36,10 @@ public:
 	DWORD Save(CFile &file) const; //保存位图
 	DWORD Read(CFile &file); //读取位图文件
 	DWORD ReadFromHandle(HGLOBAL hGlobal);
+
+	BOOL LinearTransform(int minout, int maxout);
+	BOOL HistoEquivalize();
+
 	LPBYTE RETURN()
 	{
 		return m_pBits;
@@ -47,8 +51,6 @@ public:
 	}
 	void Invalidate() { Free(); }
 	virtual void Serialize(CArchive &ar);
-
-	BOOL LinearTransform(int minout, int maxout);
 
 //执行部分
 public:

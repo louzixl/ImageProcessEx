@@ -2,19 +2,19 @@
 
 [General Info]
 Version=1
-LastClass=CLinearTransDlg
+LastClass=CHistoEquivalize
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "ImageProcessEx.h"
 LastPage=0
 
-ClassCount=8
+ClassCount=9
 Class1=CImageProcessExApp
 Class2=CImageProcessExDoc
 Class3=CImageProcessExView
 Class4=CMainFrame
 
-ResourceCount=5
+ResourceCount=6
 Resource1=IDR_MAINFRAME
 Resource2=IDD_DIALOG_RAWTOBMP
 Resource3=IDR_IMAGEPTYPE
@@ -24,6 +24,8 @@ Class7=CRowToBmpDlg
 Resource4=IDD_ABOUTBOX
 Class8=CLinearTransDlg
 Resource5=IDD_DIALOG_LINEARTRANS
+Class9=CHistoEquivalize
+Resource6=IDD_DIALOG_HISTOEQUIVALIZE
 
 [CLS:CImageProcessExApp]
 Type=0
@@ -126,12 +128,13 @@ Command15=ID_VIEW_TOOLBAR
 Command16=ID_VIEW_STATUS_BAR
 Command17=ID_RAWTOBMP
 Command18=ID_LINEARENHENCE
-Command19=ID_WINDOW_NEW
-Command20=ID_WINDOW_CASCADE
-Command21=ID_WINDOW_TILE_HORZ
-Command22=ID_WINDOW_ARRANGE
-Command23=ID_APP_ABOUT
-CommandCount=23
+Command19=ID_HISTOEQUIVALIZE
+Command20=ID_WINDOW_NEW
+Command21=ID_WINDOW_CASCADE
+Command22=ID_WINDOW_TILE_HORZ
+Command23=ID_WINDOW_ARRANGE
+Command24=ID_APP_ABOUT
+CommandCount=24
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -206,5 +209,27 @@ ImplementationFile=LinearTransDlg.cpp
 BaseClass=CDialog
 Filter=D
 LastObject=CLinearTransDlg
+VirtualFilter=dWC
+
+[DLG:IDD_DIALOG_HISTOEQUIVALIZE]
+Type=1
+Class=CHistoEquivalize
+ControlCount=8
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_STATIC_HISTOIN,static,1342308352
+Control4=IDC_EDIT_HISTOIN,edit,1350631552
+Control5=IDC_BUTTON_HISTOINPUT,button,1342242816
+Control6=IDC_STATIC_HISTOOUT,static,1342308352
+Control7=IDC_EDIT_HISTOOUT,edit,1350631552
+Control8=IDC_BUTTON_HISTOOUTPUT,button,1342242816
+
+[CLS:CHistoEquivalize]
+Type=0
+HeaderFile=HistoEquivalize.h
+ImplementationFile=HistoEquivalize.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=CHistoEquivalize
 VirtualFilter=dWC
 

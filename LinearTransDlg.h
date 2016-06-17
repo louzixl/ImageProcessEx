@@ -1,6 +1,7 @@
 #if !defined(AFX_LINEARTRANSDLG_H__05619C92_BA3C_416D_B27C_AA68761DBC46__INCLUDED_)
 #define AFX_LINEARTRANSDLG_H__05619C92_BA3C_416D_B27C_AA68761DBC46__INCLUDED_
 
+#include "dib.h"	// Added by ClassView
 #if _MSC_VER > 1000
 #pragma once
 #endif // _MSC_VER > 1000
@@ -14,6 +15,7 @@ class CLinearTransDlg : public CDialog
 {
 // Construction
 public:
+	CDib m_DIB;
 	CLinearTransDlg(CWnd* pParent = NULL);   // standard constructor
 
 // Dialog Data
@@ -36,7 +38,9 @@ protected:
 
 	// Generated message map functions
 	//{{AFX_MSG(CLinearTransDlg)
-		// NOTE: the ClassWizard will add member functions here
+	afx_msg void OnButtonLinearinput();
+	afx_msg void OnButtonLinearoutput();
+	virtual void OnOK();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

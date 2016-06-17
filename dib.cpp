@@ -399,9 +399,12 @@ BOOL CDib::LinearTransform(int minout, int maxout)
 	WORD wBitCount = m_pBMI->bmiHeader.biBitCount;
 	if(wBitCount!=8)
 	{
-		MessageBox(NULL, "该线性拉伸只处理8位图像！", "系统提示", MB_OK);
+		CString i2s;
+		i2s.Format("%d", wBitCount);
+		CString strMsg = "该线性拉伸只处理8位图像！该图像为" + i2s + "位图像！";
+		MessageBox(NULL, strMsg, "系统提示", MB_OK);
 		return FALSE;
-	}
+	} 
 	//获取影像的宽度和高度
 	DWORD nWidth = Width();
 	DWORD nHeight = Height();
@@ -434,6 +437,59 @@ BOOL CDib::LinearTransform(int minout, int maxout)
 				*(lpData+lRowBytes*i+j) = (BYTE)(minout+(maxout-minout)/(m_MaxGray-m_MinGray)*(*(lpData+lRowBytes*i+j)-m_MinGray));
 			}
 		}
+	}
+	return TRUE;
+}
+
+BOOL CDib::HistoEquivalize()
+{
+	//首先判断位图指针是否为空，若为空，说明没有读到数据，程序返回
+	if(m_pBMI==NULL)
+		return FALSE;
+	//得到影像的每个像素所占比特数
+	WORD wBitCount = m_pBMI->bmiHeader.biBitCount;
+	if(wBitCount!=8)
+	{
+		CString bitsNum;
+		bitsNum.Format(wBitCount);
+		CString strMsg = "该直方图均衡只处理8位图像！" + bitsNum + "位图像！";
+		MessageBox(NULL, strMsg, "系统提示", MB_OK);
+		return FALSE;
+	}
+	//获取影像的宽度和高度
+	DWORD nWidth = Width();
+	DWORD nHeight = Height();
+	//获取影像每行的实际存储宽度
+	DWORD lRowBytes = WIDTHBYTES(nWidth*((DWORD)wBitCount));
+	//定义字符串指针变量，用来保存位图第四部分起始地址
+	LPBYTE lpData = m_pBits;
+
+	DWORD i, j;
+	//如果是8位位图
+	if(wBitCount==8)
+	{
+		//统计各灰度级的像素个数
+		double r[256];
+		for(i=0; i<256; ++i)
+			r[i] = 0.0;
+		for(i=0; i<nHeight; ++i)
+			for(j=0; j<nWidth; ++j)
+				r[*(lpData+i*lRowBytes+j)] += 1.0;
+
+		//计算均衡化后各亮度的新值
+		double percentile[256];
+		for(i=0; i<256; ++i)
+		{
+			percentile[i] = 0.0;
+			for(j=0; j<=i; ++j)
+				percentile[i] += r[j];
+			percentile[i] *= (255.0/(double)(nWidth*nHeight));
+		}
+
+		//更新图像
+		for(i=0; i<nHeight; ++i)
+			for(j=0; j<nWidth; ++j)
+				*(lpData+lRowBytes*i+j) = (BYTE)(percentile[*(lpData+lRowBytes*i+j)]);
 	}
 	return TRUE;
 }

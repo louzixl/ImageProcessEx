@@ -7,6 +7,8 @@
 #include "ImageProcessExDoc.h"
 #include "ImageProcessExView.h"
 #include "RowToBmpDlg.h"
+#include "LinearTransDlg.h"
+#include "HistoEquivalize.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -23,6 +25,7 @@ BEGIN_MESSAGE_MAP(CImageProcessExView, CScrollView)
 	//{{AFX_MSG_MAP(CImageProcessExView)
 	ON_COMMAND(ID_RAWTOBMP, OnRawtobmp)
 	ON_COMMAND(ID_LINEARENHENCE, OnLinearenhence)
+	ON_COMMAND(ID_HISTOEQUIVALIZE, OnHistoequivalize)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
@@ -152,5 +155,13 @@ void CImageProcessExView::OnRawtobmp()
 void CImageProcessExView::OnLinearenhence() 
 {
 	// TODO: Add your command handler code here
-	
+	CLinearTransDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnHistoequivalize() 
+{
+	// TODO: Add your command handler code here
+	CHistoEquivalize dlg;
+	dlg.DoModal();
 }

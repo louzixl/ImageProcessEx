@@ -98,6 +98,10 @@ SOURCE=.\dib.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\HistoEquivalize.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\ImageProcessEx.cpp
 # End Source File
 # Begin Source File
@@ -140,6 +144,10 @@ SOURCE=.\ChildFrm.h
 # Begin Source File
 
 SOURCE=.\dib.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\HistoEquivalize.h
 # End Source File
 # Begin Source File
 
