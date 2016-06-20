@@ -166,6 +166,10 @@ BEGIN
     BEGIN
         MENUITEM "线性拉伸",                    ID_LINEARENHENCE
         MENUITEM "直方图均衡",                  ID_HISTOEQUIVALIZE
+        POPUP " 局部滤波"
+        BEGIN
+            MENUITEM "3x3低通滤波",                 ID_LOWPASS
+        END
     END
     MENUITEM "几何变换",                    65535
     MENUITEM "频域处理",                    65535
@@ -290,6 +294,21 @@ BEGIN
     PUSHBUTTON      "浏览",IDC_BUTTON_HISTOOUTPUT,133,42,41,14
 END
 
+IDD_DIALOG_LOWPASS DIALOG DISCARDABLE  0, 0, 187, 96
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "3x3低通滤波"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,35,75,50,14
+    PUSHBUTTON      "取消",IDCANCEL,110,75,50,14
+    LTEXT           "输入图像：",IDC_STATIC_LOWPASSIN,14,20,41,8
+    EDITTEXT        IDC_EDIT_LOWPASSIN,60,18,68,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "浏览",IDC_BUTTON_LOWPASSIN,135,18,39,14
+    LTEXT           "输出图像：",IDC_STATIC_LOWPASSOUT,14,46,41,8
+    EDITTEXT        IDC_EDIT_LOWPASSOUT,60,44,68,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "浏览",IDC_BUTTON_LOWPASSOUT,135,44,39,14
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -367,6 +386,14 @@ BEGIN
     END
 
     IDD_DIALOG_HISTOEQUIVALIZE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 89
+    END
+
+    IDD_DIALOG_LOWPASS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 180

@@ -6,19 +6,18 @@
 --------------------Configuration: ImageProcessEx - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating command line "rc.exe /l 0x804 /fo"Debug/ImageProcessEx.res" /d "_DEBUG" /d "_AFXDLL" "F:\PRACTICE\VC++6.0_PRACTICE\ImageProcessEx\ImageProcessEx.rc"" 
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP7629.tmp" with contents
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP371B.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/ImageProcessEx.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"F:\PRACTICE\VC++6.0_PRACTICE\ImageProcessEx\ImageProcessExView.cpp"
-"F:\practice\VC++6.0_practice\ImageProcessEx\HistoEquivalize.cpp"
+"F:\PRACTICE\VC++6.0_PRACTICE\ImageProcessEx\dib.cpp"
 ]
-Creating command line "cl.exe @"C:\Users\建生\AppData\Local\Temp\RSP7629.tmp"" 
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP762A.tmp" with contents
+Creating command line "cl.exe @"C:\Users\建生\AppData\Local\Temp\RSP371B.tmp"" 
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP372C.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ImageProcessEx.pdb" /debug /machine:I386 /out:"Debug/ImageProcessEx.exe" /pdbtype:sept 
 ".\Debug\ChildFrm.obj"
 ".\Debug\dib.obj"
+".\Debug\HistoEquivalize.obj"
 ".\Debug\ImageProcessEx.obj"
 ".\Debug\ImageProcessExDoc.obj"
 ".\Debug\ImageProcessExView.obj"
@@ -27,32 +26,28 @@ Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP762A.tmp" with cont
 ".\Debug\RowToBmpDlg.obj"
 ".\Debug\StdAfx.obj"
 ".\Debug\ImageProcessEx.res"
-".\Debug\HistoEquivalize.obj"
+".\Debug\LowPassedDlg.obj"
 ]
-Creating command line "link.exe @"C:\Users\建生\AppData\Local\Temp\RSP762A.tmp""
+Creating command line "link.exe @"C:\Users\建生\AppData\Local\Temp\RSP372C.tmp""
 <h3>Output Window</h3>
-Compiling resources...
 Compiling...
-HistoEquivalize.cpp
-Generating Code...
-Compiling...
-ImageProcessExView.cpp
-Generating Code...
+dib.cpp
 Linking...
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP7E97.tmp" with contents
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP3A1B.tmp" with contents
 [
 /nologo /o"Debug/ImageProcessEx.bsc" 
 ".\Debug\StdAfx.sbr"
 ".\Debug\ChildFrm.sbr"
 ".\Debug\dib.sbr"
+".\Debug\HistoEquivalize.sbr"
 ".\Debug\ImageProcessEx.sbr"
 ".\Debug\ImageProcessExDoc.sbr"
 ".\Debug\ImageProcessExView.sbr"
 ".\Debug\LinearTransDlg.sbr"
 ".\Debug\MainFrm.sbr"
 ".\Debug\RowToBmpDlg.sbr"
-".\Debug\HistoEquivalize.sbr"]
-Creating command line "bscmake.exe @"C:\Users\建生\AppData\Local\Temp\RSP7E97.tmp""
+".\Debug\LowPassedDlg.sbr"]
+Creating command line "bscmake.exe @"C:\Users\建生\AppData\Local\Temp\RSP3A1B.tmp""
 Creating browse info file...
 <h3>Output Window</h3>
 

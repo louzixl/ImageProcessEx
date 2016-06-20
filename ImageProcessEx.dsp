@@ -122,6 +122,10 @@ SOURCE=.\LinearTransDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\LowPassedDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\MainFrm.cpp
 # End Source File
 # Begin Source File
@@ -164,6 +168,10 @@ SOURCE=.\ImageProcessExView.h
 # Begin Source File
 
 SOURCE=.\LinearTransDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\LowPassedDlg.h
 # End Source File
 # Begin Source File
 

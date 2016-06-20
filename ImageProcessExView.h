@@ -52,6 +52,7 @@ protected:
 	afx_msg void OnRawtobmp();
 	afx_msg void OnLinearenhence();
 	afx_msg void OnHistoequivalize();
+	afx_msg void OnLowpass();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

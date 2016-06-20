@@ -2,30 +2,32 @@
 
 [General Info]
 Version=1
-LastClass=CHistoEquivalize
+LastClass=CLowPassedDlg
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "ImageProcessEx.h"
 LastPage=0
 
-ClassCount=9
+ClassCount=10
 Class1=CImageProcessExApp
 Class2=CImageProcessExDoc
 Class3=CImageProcessExView
 Class4=CMainFrame
 
-ResourceCount=6
-Resource1=IDR_MAINFRAME
-Resource2=IDD_DIALOG_RAWTOBMP
-Resource3=IDR_IMAGEPTYPE
+ResourceCount=7
+Resource1=IDD_DIALOG_LINEARTRANS
+Resource2=IDR_MAINFRAME
+Resource3=IDD_DIALOG_HISTOEQUIVALIZE
 Class5=CChildFrame
 Class6=CAboutDlg
 Class7=CRowToBmpDlg
-Resource4=IDD_ABOUTBOX
+Resource4=IDR_IMAGEPTYPE
 Class8=CLinearTransDlg
-Resource5=IDD_DIALOG_LINEARTRANS
+Resource5=IDD_DIALOG_RAWTOBMP
 Class9=CHistoEquivalize
-Resource6=IDD_DIALOG_HISTOEQUIVALIZE
+Resource6=IDD_ABOUTBOX
+Class10=CLowPassedDlg
+Resource7=IDD_DIALOG_LOWPASS
 
 [CLS:CImageProcessExApp]
 Type=0
@@ -48,7 +50,7 @@ ImplementationFile=ImageProcessExView.cpp
 Filter=C
 BaseClass=CScrollView
 VirtualFilter=VWC
-LastObject=CImageProcessExView
+LastObject=ID_LOWPASS
 
 
 [CLS:CMainFrame]
@@ -129,12 +131,13 @@ Command16=ID_VIEW_STATUS_BAR
 Command17=ID_RAWTOBMP
 Command18=ID_LINEARENHENCE
 Command19=ID_HISTOEQUIVALIZE
-Command20=ID_WINDOW_NEW
-Command21=ID_WINDOW_CASCADE
-Command22=ID_WINDOW_TILE_HORZ
-Command23=ID_WINDOW_ARRANGE
-Command24=ID_APP_ABOUT
-CommandCount=24
+Command20=ID_LOWPASS
+Command21=ID_WINDOW_NEW
+Command22=ID_WINDOW_CASCADE
+Command23=ID_WINDOW_TILE_HORZ
+Command24=ID_WINDOW_ARRANGE
+Command25=ID_APP_ABOUT
+CommandCount=25
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -231,5 +234,27 @@ ImplementationFile=HistoEquivalize.cpp
 BaseClass=CDialog
 Filter=D
 LastObject=CHistoEquivalize
+VirtualFilter=dWC
+
+[DLG:IDD_DIALOG_LOWPASS]
+Type=1
+Class=CLowPassedDlg
+ControlCount=8
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_STATIC_LOWPASSIN,static,1342308352
+Control4=IDC_EDIT_LOWPASSIN,edit,1350631552
+Control5=IDC_BUTTON_LOWPASSIN,button,1342242816
+Control6=IDC_STATIC_LOWPASSOUT,static,1342308352
+Control7=IDC_EDIT_LOWPASSOUT,edit,1350631552
+Control8=IDC_BUTTON_LOWPASSOUT,button,1342242816
+
+[CLS:CLowPassedDlg]
+Type=0
+HeaderFile=LowPassedDlg.h
+ImplementationFile=LowPassedDlg.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=CLowPassedDlg
 VirtualFilter=dWC
 
