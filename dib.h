@@ -40,6 +40,7 @@ public:
 	BOOL LinearTransform(int minout, int maxout);
 	BOOL HistoEquivalize();
 	BOOL LowPassDib();
+	BOOL HighPassDib();
 
 	LPBYTE RETURN()
 	{

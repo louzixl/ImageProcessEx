@@ -10,6 +10,7 @@
 #include "LinearTransDlg.h"
 #include "HistoEquivalize.h"
 #include "LowPassedDlg.h"
+#include "HighPassDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -28,6 +29,7 @@ BEGIN_MESSAGE_MAP(CImageProcessExView, CScrollView)
 	ON_COMMAND(ID_LINEARENHENCE, OnLinearenhence)
 	ON_COMMAND(ID_HISTOEQUIVALIZE, OnHistoequivalize)
 	ON_COMMAND(ID_LOWPASS, OnLowpass)
+	ON_COMMAND(ID_HIGHPASS, OnHighpass)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
@@ -172,5 +174,12 @@ void CImageProcessExView::OnLowpass()
 {
 	// TODO: Add your command handler code here
 	CLowPassedDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnHighpass() 
+{
+	// TODO: Add your command handler code here
+	CHighPassDlg dlg;
 	dlg.DoModal();
 }

@@ -9,6 +9,7 @@
 #define IDD_DIALOG_LINEARTRANS          131
 #define IDD_DIALOG_HISTOEQUIVALIZE      132
 #define IDD_DIALOG_LOWPASS              133
+#define IDD_DIALOG_HIGHPASS             134
 #define IDC_EDIT_RAWCIN                 1000
 #define IDC_BUTTON_RAWVIEW              1003
 #define IDC_EDIT_BMPCIN                 1004
@@ -43,21 +44,28 @@
 #define IDC_BUTTON_LOWPASSIN            1031
 #define IDC_STATIC_LOWPASSIN            1032
 #define IDC_STATIC_LOWPASSOUT           1033
+#define IDC_EDIT_HIGHPASSIN             1033
 #define IDC_EDIT_LOWPASSOUT             1034
+#define IDC_BUTTON_HIGHPASSIN           1034
 #define IDC_BUTTON_LOWPASSOUT           1035
+#define IDC_STATIC_HIGHPASSIN           1035
+#define IDC_STATIC_HIGHPASSOUT          1036
+#define IDC_EDIT_HIGHPASSOUT            1037
+#define IDC_BUTTON_HIGHPASSOUT          1038
 #define ID_RAWTOBMP                     32771
 #define ID_LINEARENHENCE                32772
 #define ID_HISTOEQUIVALIZE              32773
 #define ID_LOWPASS                      32775
+#define ID_HIGHPASS                     32776
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        134
-#define _APS_NEXT_COMMAND_VALUE         32776
-#define _APS_NEXT_CONTROL_VALUE         1033
+#define _APS_NEXT_RESOURCE_VALUE        135
+#define _APS_NEXT_COMMAND_VALUE         32777
+#define _APS_NEXT_CONTROL_VALUE         1036
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

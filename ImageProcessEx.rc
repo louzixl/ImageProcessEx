@@ -169,6 +169,7 @@ BEGIN
         POPUP " 局部滤波"
         BEGIN
             MENUITEM "3x3低通滤波",                 ID_LOWPASS
+            MENUITEM "3x3高通滤波",                 ID_HIGHPASS
         END
     END
     MENUITEM "几何变换",                    65535
@@ -309,6 +310,21 @@ BEGIN
     PUSHBUTTON      "浏览",IDC_BUTTON_LOWPASSOUT,135,44,39,14
 END
 
+IDD_DIALOG_HIGHPASS DIALOG DISCARDABLE  0, 0, 187, 96
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "3x3高通滤波"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,32,75,50,14
+    PUSHBUTTON      "取消",IDCANCEL,109,75,50,14
+    LTEXT           "输入图像：",IDC_STATIC_HIGHPASSIN,17,20,41,8
+    EDITTEXT        IDC_EDIT_HIGHPASSIN,61,17,65,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "浏览",IDC_BUTTON_HIGHPASSIN,134,16,40,14
+    LTEXT           "输出图像：",IDC_STATIC_HIGHPASSOUT,17,46,41,8
+    EDITTEXT        IDC_EDIT_HIGHPASSOUT,61,43,65,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "浏览",IDC_BUTTON_HIGHPASSOUT,134,42,40,14
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -394,6 +410,14 @@ BEGIN
     END
 
     IDD_DIALOG_LOWPASS, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 89
+    END
+
+    IDD_DIALOG_HIGHPASS, DIALOG
     BEGIN
         LEFTMARGIN, 7
         RIGHTMARGIN, 180

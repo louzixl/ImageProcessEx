@@ -571,3 +571,79 @@ BOOL CDib::LowPassDib()
 	}
 	return TRUE;
 }
+
+/**
+ * [CDib::HighPassDib description]3x3高通滤波
+ * @return [description]
+ */
+BOOL CDib::HighPassDib()
+{
+	if(m_pBMI==NULL)
+		return FALSE;
+	//得到影像的每个像素所占的比特数
+	WORD wBitCount = m_pBMI->bmiHeader.biBitCount;
+	if(wBitCount!=8)
+	{
+		CString bitsNum;
+		bitsNum.Format(wBitCount);
+		CString strMsg = "该低通滤波只处理8位图像！该图像为" + bitsNum + "位图像！";
+		MessageBox(NULL, strMsg, "系统提示", MB_OK);
+		return FALSE;
+	}
+
+	//获得实际的位图数据占用的字节数
+	DWORD m_dwSizeImage = m_pBMI->bmiHeader.biSizeImage;
+	//分配与待处理的位图同样大小的内存空间
+	LPBYTE m_lpImageCopy = (BYTE *)malloc(m_dwSizeImage);
+	if(m_lpImageCopy==NULL)
+	{
+		//若内存申请失败，弹出消息并返回退出
+		SetCursor(LoadCursor(NULL, IDC_ARROW));
+		AfxMessageBox("Memory Allocate error");
+		return FALSE;
+	}
+	//若内存分配成功，将位图数据拷贝到新申请的内存中
+	memcpy(m_lpImageCopy, m_pBits, m_dwSizeImage);
+	//获取影像的宽度和高度
+	DWORD nWidth = Width();
+	DWORD nHeight = Height();
+
+	//获取影像每行的实际存储宽度
+	DWORD lRowBytes = WIDTHBYTES(((DWORD)wBitCount)*nWidth);
+	LPBYTE lpData = m_pBits; //原位图指针
+	LPBYTE lpOldBits = m_lpImageCopy; //原位图的拷贝
+
+	//图像变换开始
+	DWORD i, j;
+	//定义9个字符指针变量，对应3x3模板的9个像素的存储地址
+	BYTE *p1, *p2, *p3, *p4, *p5, *p6, *p7, *p8, *p9;
+	//对8比特位图进行处理
+	if(wBitCount==8){
+		for(i=1; i<nHeight-1; ++i){
+			for(j=1; j<nWidth-1; ++j){
+				//得到模板每个像素的地址
+				p1 = lpOldBits+lRowBytes*(i-1)+(j-1);
+				p2 = lpOldBits+lRowBytes*(i)+(j-1);
+				p3 = lpOldBits+lRowBytes*(i+1)+(j-1);
+				p4 = lpOldBits+lRowBytes*(i-1)+j;
+				p5 = lpData+lRowBytes*i+j;
+				p6 = lpOldBits+lRowBytes*(i+1)+j;
+				p7 = lpOldBits+lRowBytes*(i-1)+(j+1);
+				p8 = lpOldBits+lRowBytes*i+(j+1);
+				p9 = lpOldBits+lRowBytes*(i+1)+(j+1);
+
+				//得到模板中心对应原位图的灰度值
+				*p5 = *(lpOldBits+lRowBytes*i+j);
+				//计算模板中心像素的灰度值，同时对大于255和小于0的像素进行处理
+				int t = (int)(*p5*9-*p1-*p2-*p3-*p4-*p6-*p7-*p8-*p9);
+				if(t>255)
+					*p5 = 255;
+				else if(t<0)
+					*p5 = 0;
+				else
+					*p5 = (BYTE)t;				
+			}
+		}
+	}
+	return TRUE;
+}

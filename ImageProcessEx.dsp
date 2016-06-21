@@ -98,6 +98,10 @@ SOURCE=.\dib.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\HighPassDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\HistoEquivalize.cpp
 # End Source File
 # Begin Source File
@@ -148,6 +152,10 @@ SOURCE=.\ChildFrm.h
 # Begin Source File
 
 SOURCE=.\dib.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\HighPassDlg.h
 # End Source File
 # Begin Source File
 
