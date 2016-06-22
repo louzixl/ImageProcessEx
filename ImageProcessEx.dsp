@@ -134,6 +134,10 @@ SOURCE=.\MainFrm.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\MiddlePassDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\RowToBmpDlg.cpp
 # End Source File
 # Begin Source File
@@ -184,6 +188,10 @@ SOURCE=.\LowPassedDlg.h
 # Begin Source File
 
 SOURCE=.\MainFrm.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\MiddlePassDlg.h
 # End Source File
 # Begin Source File
 

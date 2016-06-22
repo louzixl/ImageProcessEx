@@ -11,6 +11,7 @@
 #include "HistoEquivalize.h"
 #include "LowPassedDlg.h"
 #include "HighPassDlg.h"
+#include "MiddlePassDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -30,6 +31,7 @@ BEGIN_MESSAGE_MAP(CImageProcessExView, CScrollView)
 	ON_COMMAND(ID_HISTOEQUIVALIZE, OnHistoequivalize)
 	ON_COMMAND(ID_LOWPASS, OnLowpass)
 	ON_COMMAND(ID_HIGHPASS, OnHighpass)
+	ON_COMMAND(ID_MIDDLEPASS, OnMiddlepass)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
@@ -181,5 +183,12 @@ void CImageProcessExView::OnHighpass()
 {
 	// TODO: Add your command handler code here
 	CHighPassDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnMiddlepass() 
+{
+	// TODO: Add your command handler code here
+	CMiddlePassDlg dlg;
 	dlg.DoModal();
 }

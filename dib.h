@@ -41,6 +41,7 @@ public:
 	BOOL HistoEquivalize();
 	BOOL LowPassDib();
 	BOOL HighPassDib();
+	BOOL MedianFilterDIB();
 
 	LPBYTE RETURN()
 	{

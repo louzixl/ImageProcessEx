@@ -6,18 +6,19 @@
 --------------------Configuration: ImageProcessEx - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP1060.tmp" with contents
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP2760.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/ImageProcessEx.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
 "F:\PRACTICE\VC++6.0_PRACTICE\ImageProcessEx\ImageProcessExView.cpp"
-"F:\practice\VC++6.0_practice\ImageProcessEx\HighPassDlg.cpp"
+"F:\practice\VC++6.0_practice\ImageProcessEx\MiddlePassDlg.cpp"
 ]
-Creating command line "cl.exe @"C:\Users\建生\AppData\Local\Temp\RSP1060.tmp"" 
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP1061.tmp" with contents
+Creating command line "cl.exe @"C:\Users\建生\AppData\Local\Temp\RSP2760.tmp"" 
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP2761.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ImageProcessEx.pdb" /debug /machine:I386 /out:"Debug/ImageProcessEx.exe" /pdbtype:sept 
 ".\Debug\ChildFrm.obj"
 ".\Debug\dib.obj"
+".\Debug\HighPassDlg.obj"
 ".\Debug\HistoEquivalize.obj"
 ".\Debug\ImageProcessEx.obj"
 ".\Debug\ImageProcessExDoc.obj"
@@ -28,23 +29,23 @@ Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP1061.tmp" with cont
 ".\Debug\RowToBmpDlg.obj"
 ".\Debug\StdAfx.obj"
 ".\Debug\ImageProcessEx.res"
-".\Debug\HighPassDlg.obj"
+".\Debug\MiddlePassDlg.obj"
 ]
-Creating command line "link.exe @"C:\Users\建生\AppData\Local\Temp\RSP1061.tmp""
+Creating command line "link.exe @"C:\Users\建生\AppData\Local\Temp\RSP2761.tmp""
 <h3>Output Window</h3>
 Compiling...
-HighPassDlg.cpp
+MiddlePassDlg.cpp
 Generating Code...
-Compiling...
+Skipping... (no relevant changes detected)
 ImageProcessExView.cpp
-Generating Code...
 Linking...
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP11AB.tmp" with contents
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP2918.tmp" with contents
 [
 /nologo /o"Debug/ImageProcessEx.bsc" 
 ".\Debug\StdAfx.sbr"
 ".\Debug\ChildFrm.sbr"
 ".\Debug\dib.sbr"
+".\Debug\HighPassDlg.sbr"
 ".\Debug\HistoEquivalize.sbr"
 ".\Debug\ImageProcessEx.sbr"
 ".\Debug\ImageProcessExDoc.sbr"
@@ -53,8 +54,8 @@ Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP11AB.tmp" with cont
 ".\Debug\LowPassedDlg.sbr"
 ".\Debug\MainFrm.sbr"
 ".\Debug\RowToBmpDlg.sbr"
-".\Debug\HighPassDlg.sbr"]
-Creating command line "bscmake.exe @"C:\Users\建生\AppData\Local\Temp\RSP11AB.tmp""
+".\Debug\MiddlePassDlg.sbr"]
+Creating command line "bscmake.exe @"C:\Users\建生\AppData\Local\Temp\RSP2918.tmp""
 Creating browse info file...
 <h3>Output Window</h3>
 

@@ -647,3 +647,115 @@ BOOL CDib::HighPassDib()
 	}
 	return TRUE;
 }
+
+/**
+ * [CDib::MedianFilterDIB description]中值滤波
+ * @return [description]
+ */
+BOOL CDib::MedianFilterDIB()
+{
+	if(m_pBMI==NULL)
+		return FALSE;
+	//得到影像的每个像素所占比特数
+	WORD wBitCount = m_pBMI->bmiHeader.biBitCount;
+	if(wBitCount!=8)
+	{
+		CString strMsg;
+		strMsg.Format(wBitCount);
+		CString Msg = "该中值滤波器只处理8位图像！该图像为" + strMsg + "位图像！";
+		MessageBox(NULL, Msg, "系统提示", MB_OK);
+		return FALSE;
+	}
+
+	//获得实际的位图数据占用的字节数
+	DWORD m_dwSizeImage = m_pBMI->bmiHeader.biSizeImage;
+	//分配与待处理位图相同大小的内存
+	LPBYTE m_lpImageCopy = (BYTE *)malloc(m_dwSizeImage);
+	if(m_lpImageCopy==NULL)
+	{
+		//若内存申请失败，弹出消息并返回退出
+		SetCursor(LoadCursor(NULL, IDC_ARROW));
+		AfxMessageBox("Memory Allocate error");
+		return FALSE;
+	}
+	//若内存分配成功，将位图数据拷贝到新申请的内存中
+	memcpy(m_lpImageCopy, m_pBits, m_dwSizeImage);
+
+	//获取影像每行的实际存储宽度
+	DWORD nWidth = Width();
+	DWORD nHeight = Height();
+	//获取影像每行的实际存储宽度
+	DWORD lRowBytes = WIDTHBYTES(nWidth*((DWORD)wBitCount));
+
+	LPBYTE lpData = m_pBits; //原位图指针
+	LPBYTE lpOldBits = m_lpImageCopy; //原位图的拷贝
+	//图像变换开始
+	DWORD i, j;
+	//定义15个字符指针变量，对应5x5模板的25个像素的存储地址
+	BYTE *p1, *p2, *p3, *p4, *p5, *p6, *p7, *p8, *p9, *p10, 
+	*p11, *p12, *p13, *p14, *p15, *p16, *p17, *p18, *p19, *p20, 
+	*p21, *p22, *p23, *p24, *p25;
+	//对8比特位图进行处理
+	if(wBitCount==8){
+		for(i=2; i<nHeight-2; ++i){
+			for(j=2; j<nWidth-2; ++j){
+				//得到模板每个像素的地址
+				p1 = lpOldBits + lRowBytes*(i-2) + (j-2);
+				p2 = lpOldBits + lRowBytes*(i-1) + (j-2);
+				p3 = lpOldBits + lRowBytes*(i) + (j-2);
+				p4 = lpOldBits + lRowBytes*(i+1) + (j-2);
+				p5 = lpOldBits + lRowBytes*(i+2) + (j-2);
+				p6 = lpOldBits + lRowBytes*(i-2) + (j-1);
+				p7 = lpOldBits + lRowBytes*(i-1) + (j-1);
+				p8 = lpOldBits + lRowBytes*(i) + (j-1);
+				p9 = lpOldBits + lRowBytes*(i+1) + (j-1);
+				p10 = lpOldBits + lRowBytes*(i+2) + (j-1);
+				p11 = lpOldBits + lRowBytes*(i-2) + (j);
+				p12 = lpOldBits + lRowBytes*(i-1) + (j);
+				//使p13指针指向原始影像的模板中心对应像素
+				p13 = lpData + lRowBytes*(i) + (j);
+				p14 = lpOldBits + lRowBytes*(i+1) + (j);
+				p15 = lpOldBits + lRowBytes*(i+2) + (j);
+				p16 = lpOldBits + lRowBytes*(i-2) + (j+1);
+				p17 = lpOldBits + lRowBytes*(i-1) + (j+1);
+				p18 = lpOldBits + lRowBytes*(i) + (j+1);
+				p19 = lpOldBits + lRowBytes*(i+1) + (j+1);
+				p20 = lpOldBits + lRowBytes*(i+2) + (j+1);
+				p21 = lpOldBits + lRowBytes*(i-2) + (j+2);
+				p22 = lpOldBits + lRowBytes*(i-1) + (j+2);
+				p23 = lpOldBits + lRowBytes*(i) + (j+2);
+				p24 = lpOldBits + lRowBytes*(i+1) + (j+2);
+				p25 = lpOldBits + lRowBytes*(i+2) + (j+2);
+
+				//得到模板中心对应原位图的灰度值
+				*p13 = *(lpOldBits+lRowBytes*i+j);
+
+				int t, temp[25];
+				
+				temp[0] = (int)(*p1); temp[1] = (int)(*p2); temp[2] = (int)(*p3);
+				temp[3] = (int)(*p4); temp[4] = (int)(*p5); temp[5] = (int)(*p6);
+				temp[6] = (int)(*p7); temp[7] = (int)(*p8); temp[8] = (int)(*p9);
+				temp[9] = (int)(*p10); temp[10] = (int)(*p11); temp[11] = (int)(*p12);
+				temp[12] = (int)(*p13); temp[13] = (int)(*p14); temp[14] = (int)(*p15);
+				temp[15] = (int)(*p16); temp[16] = (int)(*p17); temp[17] = (int)(*p18);
+				temp[18] = (int)(*p19); temp[19] = (int)(*p20); temp[20] = (int)(*p21);
+				temp[21] = (int)(*p22); temp[22] = (int)(*p23); temp[23] = (int)(*p24);
+				temp[24] = (int)(*p25);
+
+				//起泡法排序
+				for(int j=1; j<25; ++j){
+					for(int i=1; i<=25-j; ++i){
+						if(temp[i]>temp[i+1]){
+							t = temp[i];
+							temp[i] = temp[i+1];
+							temp[i+1] = t;
+						}
+					}
+				}
+				//将中间灰度值赋给模板中心对应的像素
+				*p13 = (BYTE)temp[12];
+			}
+		}
+	}
+	return TRUE;
+}

@@ -54,6 +54,7 @@ protected:
 	afx_msg void OnHistoequivalize();
 	afx_msg void OnLowpass();
 	afx_msg void OnHighpass();
+	afx_msg void OnMiddlepass();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -8,28 +8,30 @@ NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "ImageProcessEx.h"
 LastPage=0
 
-ClassCount=11
+ClassCount=12
 Class1=CImageProcessExApp
 Class2=CImageProcessExDoc
 Class3=CImageProcessExView
 Class4=CMainFrame
 
-ResourceCount=8
-Resource1=IDR_MAINFRAME
-Resource2=IDD_DIALOG_LINEARTRANS
-Resource3=IDD_ABOUTBOX
+ResourceCount=9
+Resource1=IDD_DIALOG_LOWPASS
+Resource2=IDD_ABOUTBOX
+Resource3=IDD_DIALOG_LINEARTRANS
 Class5=CChildFrame
 Class6=CAboutDlg
 Class7=CRowToBmpDlg
-Resource4=IDD_DIALOG_HISTOEQUIVALIZE
+Resource4=IDD_DIALOG_RAWTOBMP
 Class8=CLinearTransDlg
-Resource5=IDD_DIALOG_LOWPASS
+Resource5=IDD_DIALOG_HISTOEQUIVALIZE
 Class9=CHistoEquivalize
-Resource6=IDD_DIALOG_RAWTOBMP
+Resource6=IDR_MAINFRAME
 Class10=CLowPassedDlg
-Resource7=IDR_IMAGEPTYPE
+Resource7=IDD_DIALOG_HIGHPASS
 Class11=CHighPassDlg
-Resource8=IDD_DIALOG_HIGHPASS
+Resource8=IDR_IMAGEPTYPE
+Class12=CMiddlePassDlg
+Resource9=IDD_DIALOG_MIDDLEPASS
 
 [CLS:CImageProcessExApp]
 Type=0
@@ -52,7 +54,7 @@ ImplementationFile=ImageProcessExView.cpp
 Filter=C
 BaseClass=CScrollView
 VirtualFilter=VWC
-LastObject=ID_HIGHPASS
+LastObject=ID_MIDDLEPASS
 
 
 [CLS:CMainFrame]
@@ -135,12 +137,13 @@ Command18=ID_LINEARENHENCE
 Command19=ID_HISTOEQUIVALIZE
 Command20=ID_LOWPASS
 Command21=ID_HIGHPASS
-Command22=ID_WINDOW_NEW
-Command23=ID_WINDOW_CASCADE
-Command24=ID_WINDOW_TILE_HORZ
-Command25=ID_WINDOW_ARRANGE
-Command26=ID_APP_ABOUT
-CommandCount=26
+Command22=ID_MIDDLEPASS
+Command23=ID_WINDOW_NEW
+Command24=ID_WINDOW_CASCADE
+Command25=ID_WINDOW_TILE_HORZ
+Command26=ID_WINDOW_ARRANGE
+Command27=ID_APP_ABOUT
+CommandCount=27
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -282,4 +285,26 @@ BaseClass=CDialog
 Filter=D
 LastObject=CHighPassDlg
 VirtualFilter=dWC
+
+[CLS:CMiddlePassDlg]
+Type=0
+HeaderFile=MiddlePassDlg.h
+ImplementationFile=MiddlePassDlg.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=CMiddlePassDlg
+VirtualFilter=dWC
+
+[DLG:IDD_DIALOG_MIDDLEPASS]
+Type=1
+Class=CMiddlePassDlg
+ControlCount=8
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_STATIC_MIDDLEPASSIN,static,1342308352
+Control4=IDC_EDIT_MIDDLEPASSIN,edit,1350631552
+Control5=IDC_BUTTON_MIDDLEPASSIN,button,1342242816
+Control6=IDC_STATIC_MIDDLEPASSOUT,static,1342308352
+Control7=IDC_EDIT_MIDDLEPASSOUT,edit,1350631552
+Control8=IDC_BUTTON_MIDDLEPASSOUT,button,1342242816
 
