@@ -145,6 +145,10 @@ SOURCE=.\RowToBmpDlg.cpp
 SOURCE=.\StdAfx.cpp
 # ADD CPP /Yc"stdafx.h"
 # End Source File
+# Begin Source File
+
+SOURCE=.\TranslationDlg.cpp
+# End Source File
 # End Group
 # Begin Group "Header Files"
 
@@ -204,6 +208,10 @@ SOURCE=.\RowToBmpDlg.h
 # Begin Source File
 
 SOURCE=.\StdAfx.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TranslationDlg.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"

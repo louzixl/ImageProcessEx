@@ -2,26 +2,26 @@
 
 [General Info]
 Version=1
-LastClass=CImageProcessExView
+LastClass=CTranslationDlg
 LastTemplate=CDialog
 NewFileInclude1=#include "stdafx.h"
 NewFileInclude2=#include "ImageProcessEx.h"
 LastPage=0
 
-ClassCount=12
+ClassCount=13
 Class1=CImageProcessExApp
 Class2=CImageProcessExDoc
 Class3=CImageProcessExView
 Class4=CMainFrame
 
-ResourceCount=9
+ResourceCount=10
 Resource1=IDD_DIALOG_LOWPASS
-Resource2=IDD_ABOUTBOX
+Resource2=IDD_DIALOG_MIDDLEPASS
 Resource3=IDD_DIALOG_LINEARTRANS
 Class5=CChildFrame
 Class6=CAboutDlg
 Class7=CRowToBmpDlg
-Resource4=IDD_DIALOG_RAWTOBMP
+Resource4=IDD_ABOUTBOX
 Class8=CLinearTransDlg
 Resource5=IDD_DIALOG_HISTOEQUIVALIZE
 Class9=CHistoEquivalize
@@ -29,9 +29,11 @@ Resource6=IDR_MAINFRAME
 Class10=CLowPassedDlg
 Resource7=IDD_DIALOG_HIGHPASS
 Class11=CHighPassDlg
-Resource8=IDR_IMAGEPTYPE
+Resource8=IDD_DIALOG_RAWTOBMP
 Class12=CMiddlePassDlg
-Resource9=IDD_DIALOG_MIDDLEPASS
+Resource9=IDR_IMAGEPTYPE
+Class13=CTranslationDlg
+Resource10=IDD_DIALOG_TRANSLATION
 
 [CLS:CImageProcessExApp]
 Type=0
@@ -54,7 +56,7 @@ ImplementationFile=ImageProcessExView.cpp
 Filter=C
 BaseClass=CScrollView
 VirtualFilter=VWC
-LastObject=ID_MIDDLEPASS
+LastObject=ID_TRANSLATION
 
 
 [CLS:CMainFrame]
@@ -138,12 +140,16 @@ Command19=ID_HISTOEQUIVALIZE
 Command20=ID_LOWPASS
 Command21=ID_HIGHPASS
 Command22=ID_MIDDLEPASS
-Command23=ID_WINDOW_NEW
-Command24=ID_WINDOW_CASCADE
-Command25=ID_WINDOW_TILE_HORZ
-Command26=ID_WINDOW_ARRANGE
-Command27=ID_APP_ABOUT
-CommandCount=27
+Command23=ID_TRANSLATION
+Command24=ID_ZOOM
+Command25=ID_ROTATE
+Command26=ID_TRANSPOSITION
+Command27=ID_WINDOW_NEW
+Command28=ID_WINDOW_CASCADE
+Command29=ID_WINDOW_TILE_HORZ
+Command30=ID_WINDOW_ARRANGE
+Command31=ID_APP_ABOUT
+CommandCount=31
 
 [ACL:IDR_MAINFRAME]
 Type=1
@@ -307,4 +313,30 @@ Control5=IDC_BUTTON_MIDDLEPASSIN,button,1342242816
 Control6=IDC_STATIC_MIDDLEPASSOUT,static,1342308352
 Control7=IDC_EDIT_MIDDLEPASSOUT,edit,1350631552
 Control8=IDC_BUTTON_MIDDLEPASSOUT,button,1342242816
+
+[DLG:IDD_DIALOG_TRANSLATION]
+Type=1
+Class=CTranslationDlg
+ControlCount=12
+Control1=IDOK,button,1342242817
+Control2=IDCANCEL,button,1342242816
+Control3=IDC_STATIC_TRANSLATIONIN,static,1342308352
+Control4=IDC_EDIT_TRANSLATIONIN,edit,1350631552
+Control5=IDC_BUTTON_TRANSLATIONIN,button,1342242816
+Control6=IDC_STATIC_TRANSLATIONOUT,static,1342308352
+Control7=IDC_EDIT_TRANSLATIONOUT,edit,1350631552
+Control8=IDC_BUTTON_TRANSLATIONOUT,button,1342242816
+Control9=IDC_STATIC_DIRECTX,static,1342308352
+Control10=IDC_EDIT_DIRECTX,edit,1350631552
+Control11=IDC_STATIC_DIRECTY,static,1342308352
+Control12=IDC_EDIT_DIRECTY,edit,1350631552
+
+[CLS:CTranslationDlg]
+Type=0
+HeaderFile=TranslationDlg.h
+ImplementationFile=TranslationDlg.cpp
+BaseClass=CDialog
+Filter=D
+LastObject=IDC_EDIT_DIRECTX
+VirtualFilter=dWC
 

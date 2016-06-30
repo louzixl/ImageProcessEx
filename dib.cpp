@@ -759,3 +759,411 @@ BOOL CDib::MedianFilterDIB()
 	}
 	return TRUE;
 }
+
+/**
+ * [TranslationDIB description]图像平移
+ * @param  dXOffset [description]水平位移
+ * @param  dYOffset [description]垂直位移
+ * @return          [description]
+ */
+BOOL CDib::TranslationDIB(DWORD dXOffset, DWORD dYOffset)
+{
+	if(m_pBMI==NULL)
+		return FALSE;
+
+	//获得实际的位图数据占用的字节数
+	DWORD m_dwSizeImage = m_pBMI->bmiHeader.biSizeImage;
+
+	LPBYTE m_lpImageCopy = (BYTE *)malloc(m_dwSizeImage);
+	if(m_lpImageCopy == NULL){
+		SetCursor(LoadCursor(NULL,IDC_ARROW));
+		AfxMessageBox("Memory Allocate Error");
+		return FALSE;
+	}
+
+	memcpy(m_lpImageCopy, m_pBits, m_dwSizeImage);
+
+	DWORD nWidth = Width();
+	DWORD nHeight = Height();
+	WORD wBitCount = m_pBMI->bmiHeader.biBitCount;
+	DWORD lRowBytes = WIDTHBYTES(nWidth*((DWORD)wBitCount));
+	LPBYTE lpData = m_pBits;
+	LPBYTE lpOldBits = m_lpImageCopy;
+
+	//像素在新DIB中的坐标
+	DWORD i, j;
+
+	//像素在原DIB中的坐标
+	long i_0, j_0;
+
+	for(i=0; i<nHeight; ++i){
+		for(j=0; j<nWidth; ++j){
+			LPBYTE lpTemp = lpData + lRowBytes*i+j;
+
+			//计算该像素在原DIB中的坐标
+			i_0 = i - dXOffset;
+			j_0 = j - dYOffset;
+
+			//判断是否在原图像范围内
+			if((j_0>=0)&&(j_0<(long)nWidth)&&(i_0>=0)&&(i_0<(long)nHeight)){
+				*lpTemp = *(lpOldBits + lRowBytes*i_0 + j_0);
+			}
+			else{
+				//对于原图像中没有的像素，直接赋值为255
+				*lpTemp = (BYTE)255;
+			}
+		}
+	}
+	return TRUE;
+}
+
+/**
+ * [CDib::ZoomDIB description]图像缩放
+ * @param fXZoomRatio [description]X轴缩放比例
+ * @param fYZoomRatio [description]Y轴缩放比例
+ */
+/*void CDib::ZoomDIB(float fXZoomRatio, float fYZoomRatio)
+{
+	//原图像的宽度和高度
+	LONG lWidth;
+	LONG lHeight;
+
+	//缩放后图像的宽度和高度
+	LONG lNewWidth;
+	LONG lNewHeight;
+
+	//缩放后图像的宽度（lNewWidth'，必须是4的倍数）
+	LONG lNewLineBytes;
+
+	//指向原图像的指针
+	LPBYTE lpDIBBits;
+
+	//指向源像素的指针
+	LPBYTE lpSrc;
+
+	//缩放后新DIB句柄
+	LPBYTE lpZoomBits;
+
+	//指向缩放图像对应像素的指针
+	LPBYTE lpDst;
+
+	//指向缩放图像的指针
+	LPBYTE lpNewDIB;
+	LPBYTE lpNewDIBBits;
+
+	//循环变量（像素在新DIB中的坐标）
+	LONG i, j;
+
+	//像素在原DIB中的坐标
+	LONG i_0, j_0;
+
+	//图像每行的字节数
+	LONG lLineBytes;
+
+	//锁定原图像
+	LPBYTE lpDIB = (LPBYTE)::GlobalLock((HGLOBAL) m_pBits);
+	//找到原图像DIB像素起始位置
+	lpDIBBits = m_pBits;
+
+	lWidth = Width();
+	lLineBytes = WIDTHBYTES(lWidth*8);
+	lHeight = Height();
+
+	//计算缩放后图像实际宽度
+	//此处直接加0.5是由于强制类型转换时不四舍五入，而是直接截去小数部分
+	lNewWidth = (LONG)(lWidth*fXZoomRatio+0.5);
+
+	//计算新图像每行的字节数
+	lNewLineBytes = WIDTHBYTES(lNewWidth*8);
+
+	//计算缩放后的图像高度
+	lNewHeight = (LONG)(lHeight*fXZoomRatio+0.5);
+
+	//分配内存，以保存新DIB
+	lpZoomBits = (BYTE *)malloc(lNewLineBytes*lNewHeight+m_bmfHeader.bfOffBits);
+
+	//判断是否内存分配失败
+	if(lpZoomBits==NULL)
+		return;
+	//锁定内存
+	lpNewDIB = (unsigned char *)::GlobalLock((HGLOBAL)lpZoomBits);
+
+	//复制DIB信息头和调色板
+	memcpy(lpNewDIB, lpDIB, m_bmfHeader.bfOffBits);
+
+	//找到新DIB像素起始位置
+	lpNewDIBBits = lpNewDIB + m_bmfHeader.bfOffBits;
+
+	//针对图像每行进行操作
+	for(i=0; i<lNewHeight; ++i){
+		for(j=0; j<lNewWidth; ++j){
+			//指向新DIB第i行，第j个像素的指针
+			//注意此处宽度和高度是新DIB的宽度和高度
+			lpDst = (unsigned char *)lpNewDIBBits + lNewLineBytes*(lNewHeight-1-i)+j;
+			//计算该像素在原DIB中的坐标
+			i_0 = (LONG)(i/fYZoomRatio+0.5);
+			j_0 = (LONG)(j/fXZoomRatio+0.5);
+			//判断是否在原图像范围内
+			if((j_0>=0)&&(j_0<lWidth)&&(i_0>=0)&&(i_0<lHeight)){
+				//指向原DIB第i_0行，第j_0个像素的指针
+				lpSrc = (unsigned char *)lpDIBBits + lLineBytes*(lHeight-1-i_0)+j_0;
+				//复制像素
+				*lpDst = *lpSrc;
+			}
+			else{
+				//对于原图像中没有的像素，直接赋值为255
+				*((unsigned char *)lpDst) = 255;
+			}
+		}
+	}
+
+	//替换原图像，显示新图像
+	m_pBMI->bmiHeader.biHeight = lNewHeight;
+	m_pBMI->bmiHeader.biWidth = lNewWidth;
+	m_pBMI->bmiHeader.biSizeImage = lNewHeight * lNewWidth;
+	m_pBits = lpNewDIBBits;
+
+	return;
+}*/
+
+/**
+ * [CDib::RotateDIB description]图像旋转
+ * @param iRotateAngle [description]旋转的角度（0~360°）
+ */
+/*void CDib::RotateDIB(int iRotateAngle)
+{
+	//原图像的宽度和高度
+	LONG lWidth;
+	LONG lHeight;
+
+	//旋转后图像的宽度和高度
+	LONG lNewWidth;
+	LONG lNewHeight;
+
+	//图像每行的字节数
+	LONG lLineBytes;
+
+	//旋转后图像的宽度（lNewWidth'，必须是4的倍数）
+	LONG lNewLineBytes;
+
+	//指向原图像的指针
+	LPBYTE lpDIBBits;
+
+	//指向原像素的指针
+	LPBYTE lpSrc;
+
+	//旋转后新DIB句柄
+	//HDIB hDIB;
+	
+	//指向旋转图像图像对应像素的指针
+	LPBYTE lpDst;
+
+	//指向旋转图像的指针
+	LPBYTE lpNewDIB;
+	LPBYTE lpNewDIBBits;
+
+	//循环变量（像素在新DIB中的坐标）
+	LONG i, j;
+
+	//像素在原DIB中的坐标
+	LONG i_0, j_0;
+
+	//旋转角度（弧度）
+	float fRotateAngle;
+
+	//旋转角度的正弦和余弦
+	float fSina, fCosa;
+
+	//原图像四个角的坐标（以图像中心为坐标系原点）
+	float fSrcX1, fSrcY1, fSrcX2, fSrcY2, fSrcX3, fSrcY3, fSrcX4, fSrcY4;
+
+	//旋转后四个角的坐标（以图像中心为坐标系原点）
+	float fDstX1, fDstY1, fDstX2, fDstY2, fDstX3, fDstY3, fDstX4, fDstY4;
+
+	//两个中间常量
+	float f1, f2;
+
+	//锁定原图像
+	LPBYTE lpDIB = (LPBYTE)::GlobalLock((HGLOBAL) m_pBits);
+
+	//找到的DIB图像像素起始位置
+	lpDIBBits = m_pBits;
+
+	//获取图像的“宽度”（4的倍数）
+	lWidth = Width();
+
+	//计算图像每行的字节数
+	lLineBytes = WIDTHBYTES(lWidth*8);
+
+	//获取图像的高度
+	lHeight = Height();
+
+	//将旋转角度从度转换为弧度
+	fRotateAngle = (float)RADIAN(iRotateAngle);
+
+	//计算旋转角度的正弦和余弦
+	fSina = (float)sin((double)fRotateAngle);
+	fCosa = (float)cos((double)fRotateAngle);
+
+	//计算原图的四个角的坐标（以图像中心为坐标系原点）
+	fSrcX1 = (float)(-(lWidth-1)/2);
+	fSrcY1 = (float)((lHeight-1)/2);
+	fSrcX2 = (float)((lWidth-1)/2);
+	fSrcY2 = (float)((lHeight-1)/2);
+	fSrcX3 = (float)(-(lWidth-1)/2);
+	fSrcY3 = (float)(-(lHeight-1)/2);
+	fSrcX4 = (float)((lWidth-1)/2);
+	fSrcY4 = (float)(-(lHeight-1)/2);
+
+	//计算新图四个角的坐标（以图像中心为坐标系原点）
+	fDstX1 = fCosa*fSrcX1 + fSina*fSrcY1;
+	fDstY1 = -fSina*fSrcX1 + fCosa*fSrcY1;
+	fDstX2 = fCosa*fSrcX2 + fSina*fSrcY2;
+	fDstY2 = -fSina*fSrcX2 + fCosa*fSrcY2;
+	fDstX3 = fCosa*fSrcX3 + fSina*fSrcY3;
+	fDstY3 = -fSina*fSrcX3 + fCosa*fSrcY3;
+	fDstX4 = fCosa*fSrcX4 + fSina*fSrcY4;
+	fDstY4 = -fSina*fSrcX4 + fCosa*fSrcY4;
+
+	//计算旋转后的图像实际宽度
+	lNewWidth = (LONGXmax(fabs(fDstX4-fDstX1), fabs(fDstX3-fDstX2))+0.5);
+	//计算新图像每行的字节数
+	lNewLineBytes = WIDTHBYTES(lNewWidth*8);
+
+	//计算旋转后图像的高度
+	lNewHeight = (LONG)(max(fabs(fDstY4-fDstY1), fabs(fDstY3-fDstY2))+0.5);
+
+	//两个常数，这样不用以后每次都计算了
+	f1 = (float)(-0.5*(lNewWidth-1)*fCosa-0.5*(lNewHeight-1)*fSina+0.5*(lWidth-1));
+	f2 = (float)(0.5*(lNewWidth-1)*fSina-0.5*(lNewHeight-1)*fCosa+0.5*(lHeight-1));
+
+	//分配内存，以保存新DIB
+	LPBYTE lpImageRotate = (BYTE *)malloc(lNewLineBytes*lNewHeight+m_bmfHeader.bfOffBits);
+
+	//判断是否内存分配失败
+	if(lpImageRotate==NULL)
+		return; //分配内存失败
+
+	//锁定内存
+	lpNewDIB = (LPBYTE)::GlobalLock((HGLOBAL)lpImageRotate);
+
+	//复制DIB信息头和调色板
+	memcpy(lpNewDIB, lpDIB, m_bmfHeader.bfOffBits);
+
+	//找到新DIB像素起始位置
+	lpNewDIBBits = lpNewDIB + m_bmfHeader.bfOffBits;
+
+	//针对图像每行进行操作
+	for(i=0; i<lNewHeight; ++i){
+		for(j=0; j<lNewWidth; ++j){
+			//指向新DIB第i行，第j个像素的指针
+			//注意此处宽度和高度是新DIB的宽度和高度
+			lpDst = (LPBYTE)lpNewDIBBits + lNewLineBytes*(lNewHeight-1-i) + j;
+
+			//计算该像素在原DIB中的坐标
+			i_0 = (LONG)(-((float)j)*fSina+((float)i)*fCosa+f2+0.5);
+			j_0 = (LONG)(((float)j)*fCosa+((float)i)*fSina+f1+0.5);
+
+			//判断是否在原图像范围内
+			if((j_0>=0)&&(j_0<lWidth)&&(i_0>=0)&&(i_0<lHeight)){
+				//指向原DIB第i_0行，第j_0个像素的指针
+				lpSrc = (LPBYTE)lpDIBBits + lLineBytes * (lHeight-1-i_0) + j_0;
+
+				//复制像素
+				*lpDst = *lpSrc;
+			}
+			else{
+				//对于原图像中没有的像素，直接赋值为255
+				*((unsigned char *)lpDst) = 255;
+			}
+		}
+	}
+
+	//替换原图像，显示新图像
+	m_pBMI->bmiHeader.biHeight = lNewHeight;
+	m_pBMI->bmiHeader.biWidth = lNewWidth;
+	m_pBMI->bmiHeader.biSizeImage = lNewHeight * lNewWidth;
+	m_pBits = lpNewDIBBits;
+
+	//返回
+	return;
+}*/
+
+/**
+ * [TransposeDIB description]图像转置
+ */
+ /*void CDib::TransposeDIB()
+{
+	//图像的宽度和高度
+	LONG lWidth;
+	LONG lHeight;
+
+	//指向原图像的指针
+	LPBYTE lpDIBBits;
+
+	//指向原像素的指针
+	LPBYTE lpSrc;
+
+	//指向转置图像对应像素的指针
+	LPBYTE lpDst;
+
+	//指向转置图像的指针
+	LPBYTE lpNewDIBBits;
+
+	//循环变量
+	LONG i, j;
+
+	//图像每行的字节数
+	LONG lLineBytes;
+
+	//新图像每行的字节数
+	LONG lNewLineBytes;
+
+	//找到原DIB图像像素起始位置
+	lpDIBBits = m_pBits;
+
+	//获取图像的高度、宽度（4的倍数）
+	lWidth = Width();
+	lHeight = Height();
+
+	//计算图像每行的字节数
+	lLineBytes = WIDTHBYTES(lWidth * 8);
+
+	//计算新图像每行的字节数
+	lNewLineBytes = WIDTHBYTES(lHeight * 8);
+
+	//暂时分配内存，以保存新图像
+	LPBYTE hNewDIBBits = (BYTE *)malloc(lWidth * lNewLineBytes);
+
+	//判断是否内存分配失败
+	if(hNewDIBBits==NULL)
+		return;
+
+	//锁定内存
+	lpNewDIBBits = (unsigned char *)LocalLock(hNewDIBBits);
+
+	//针对图像每行进行操作
+	for(i=0; i<lHeight; ++i){
+		for(j=0; j<lWidth; ++j){
+			//指向原DIB第i行，第j个像素的指针
+			lpSrc = (unsigned char *)lpDIBBits + lLineBytes * (lHeight - 1 - i) + j;
+			//指向转置DIB第j行，第i个像素的指针
+			//注意此处lWidth和lHeight是原DIB的宽度和高度，应该互换
+			lpDst = (unsigned char *)lpNewDIBBits + lNewLineBytes * (lWidth - 1 - j) + i;
+			//复制像素
+			*lpDst = *lpSrc;
+		}
+	}
+
+	//复制转置后的图像
+	memcpy(lpDIBBits, lpNewDIBBits, lWidth*lNewLineBytes);
+	//替换原图像，显示新图像
+	m_pBMI->bmiHeader.biHeight = lWidth;
+	m_pBMI->bmiHeader.biWidth = lHeight;
+	m_pBits = lpNewDIBBits;
+
+	//释放内存
+	LocalUnlock(hNewDIBBits);
+
+	return;
+}*/

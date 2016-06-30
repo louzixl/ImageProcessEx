@@ -42,6 +42,10 @@ public:
 	BOOL LowPassDib();
 	BOOL HighPassDib();
 	BOOL MedianFilterDIB();
+	BOOL TranslationDIB(DWORD dXOffset, DWORD dYOffset);
+//	void ZoomDIB(float fXZoomRatio, float fYZoomRatio);
+//	void RotateDIB(int iRotateAngle);
+//	void TransposeDIB();
 
 	LPBYTE RETURN()
 	{

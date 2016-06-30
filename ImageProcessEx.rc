@@ -173,7 +173,13 @@ BEGIN
             MENUITEM "中值滤波",                    ID_MIDDLEPASS
         END
     END
-    MENUITEM "几何变换",                    65535
+    POPUP "几何变换"
+    BEGIN
+        MENUITEM "图像平移",                    ID_TRANSLATION
+        MENUITEM "图像缩放",                    ID_ZOOM
+        MENUITEM "图像旋转",                    ID_ROTATE
+        MENUITEM "图像转置",                    ID_TRANSPOSITION
+    END
     MENUITEM "频域处理",                    65535
     MENUITEM "图像分割",                    65535
     MENUITEM "图像编码",                    65535
@@ -341,6 +347,25 @@ BEGIN
     PUSHBUTTON      "浏览",IDC_BUTTON_MIDDLEPASSOUT,135,42,35,14
 END
 
+IDD_DIALOG_TRANSLATION DIALOG DISCARDABLE  0, 0, 187, 115
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "图像平移"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "确定",IDOK,28,94,50,14
+    PUSHBUTTON      "取消",IDCANCEL,104,94,50,14
+    LTEXT           "输入图像：",IDC_STATIC_TRANSLATIONIN,13,45,41,8
+    EDITTEXT        IDC_EDIT_TRANSLATIONIN,58,42,67,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "浏览",IDC_BUTTON_TRANSLATIONIN,137,42,36,14
+    LTEXT           "输出图像：",IDC_STATIC_TRANSLATIONOUT,13,71,41,8
+    EDITTEXT        IDC_EDIT_TRANSLATIONOUT,58,68,67,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "浏览",IDC_BUTTON_TRANSLATIONOUT,137,68,36,14
+    LTEXT           "X方向：",IDC_STATIC_DIRECTX,17,17,30,8
+    EDITTEXT        IDC_EDIT_DIRECTX,48,14,40,14,ES_AUTOHSCROLL
+    LTEXT           "Y方向：",IDC_STATIC_DIRECTY,94,17,30,8
+    EDITTEXT        IDC_EDIT_DIRECTY,125,14,40,14,ES_AUTOHSCROLL
+END
+
 
 #ifndef _MAC
 /////////////////////////////////////////////////////////////////////////////
@@ -447,6 +472,14 @@ BEGIN
         RIGHTMARGIN, 180
         TOPMARGIN, 7
         BOTTOMMARGIN, 89
+    END
+
+    IDD_DIALOG_TRANSLATION, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 180
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 108
     END
 END
 #endif    // APSTUDIO_INVOKED

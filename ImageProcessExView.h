@@ -55,6 +55,8 @@ protected:
 	afx_msg void OnLowpass();
 	afx_msg void OnHighpass();
 	afx_msg void OnMiddlepass();
+	afx_msg void OnTransposition();
+	afx_msg void OnTranslation();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };
