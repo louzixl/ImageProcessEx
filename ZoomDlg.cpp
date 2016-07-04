@@ -1,9 +1,9 @@
-// TranslationDlg.cpp : implementation file
+// ZoomDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
 #include "ImageProcessEx.h"
-#include "TranslationDlg.h"
+#include "ZoomDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -12,45 +12,44 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-// CTranslationDlg dialog
+// CZoomDlg dialog
 
 
-CTranslationDlg::CTranslationDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CTranslationDlg::IDD, pParent)
+CZoomDlg::CZoomDlg(CWnd* pParent /*=NULL*/)
+	: CDialog(CZoomDlg::IDD, pParent)
 {
-	//{{AFX_DATA_INIT(CTranslationDlg)
-	m_sTranslationIn = _T("");
-	m_sTranslationOut = _T("");
-	m_nDirectX = 0;
-	m_nDirectY = 0;
+	//{{AFX_DATA_INIT(CZoomDlg)
+	m_sZoomIn = _T("");
+	m_sZoomOut = _T("");
+	m_fZoomX = 0.0f;
+	m_fZoomY = 0.0f;
 	//}}AFX_DATA_INIT
 }
 
 
-void CTranslationDlg::DoDataExchange(CDataExchange* pDX)
+void CZoomDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CTranslationDlg)
-	DDX_Text(pDX, IDC_EDIT_TRANSLATIONIN, m_sTranslationIn);
-	DDX_Text(pDX, IDC_EDIT_TRANSLATIONOUT, m_sTranslationOut);
-	DDX_Text(pDX, IDC_EDIT_DIRECTX, m_nDirectX);
-	DDX_Text(pDX, IDC_EDIT_DIRECTY, m_nDirectY);
-	DDV_MinMaxDWord(pDX, m_nDirectY, 0, 255);
+	//{{AFX_DATA_MAP(CZoomDlg)
+	DDX_Text(pDX, IDC_EDIT_ZOOMIN, m_sZoomIn);
+	DDX_Text(pDX, IDC_EDIT_ZOOMOUT, m_sZoomOut);
+	DDX_Text(pDX, IDC_EDIT_XZOOMRATIO, m_fZoomX);
+	DDX_Text(pDX, IDC_EDIT_YZOOMRATIO, m_fZoomY);
 	//}}AFX_DATA_MAP
 }
 
 
-BEGIN_MESSAGE_MAP(CTranslationDlg, CDialog)
-	//{{AFX_MSG_MAP(CTranslationDlg)
-	ON_BN_CLICKED(IDC_BUTTON_TRANSLATIONIN, OnButtonTranslationin)
-	ON_BN_CLICKED(IDC_BUTTON_TRANSLATIONOUT, OnButtonTranslationout)
+BEGIN_MESSAGE_MAP(CZoomDlg, CDialog)
+	//{{AFX_MSG_MAP(CZoomDlg)
+	ON_BN_CLICKED(IDC_BUTTON_ZOOMIN, OnButtonZoomin)
+	ON_BN_CLICKED(IDC_BUTTON_ZOOMOUT, OnButtonZoomout)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// CTranslationDlg message handlers
+// CZoomDlg message handlers
 
-void CTranslationDlg::OnButtonTranslationin() 
+void CZoomDlg::OnButtonZoomin() 
 {
 	// TODO: Add your control notification handler code here
 	//文件类型说明字符串
@@ -63,12 +62,12 @@ void CTranslationDlg::OnButtonTranslationin()
 	CString FileName;
 	FileName = SelectFile.GetPathName();
 	//将得到的文件名赋给格式转换对话框的成员变量m_sLinearTransIn
-	m_sTranslationIn = FileName;
+	m_sZoomIn = FileName;
 	//数据刷新，即将m_sLinearTransIn新得到的值显示在对话框中对应的控件上（注意参数false）
 	UpdateData(FALSE);
 }
 
-void CTranslationDlg::OnButtonTranslationout() 
+void CZoomDlg::OnButtonZoomout() 
 {
 	// TODO: Add your control notification handler code here
 	static char BASED_CODE file[] = "BMP Files(*.bmp)|*.bmp|所有文件(*.*)|*.*||";
@@ -77,15 +76,15 @@ void CTranslationDlg::OnButtonTranslationout()
 	SelectFile.DoModal();
 	CString FileName;
 	FileName = SelectFile.GetPathName();
-	m_sTranslationOut = FileName;
+	m_sZoomOut = FileName;
 	UpdateData(FALSE);
 }
 
-void CTranslationDlg::OnOK() 
+void CZoomDlg::OnOK() 
 {
 	// TODO: Add extra validation here
 	CFile file1;
-	file1.Open(m_sTranslationIn, CFile::modeRead|CFile::shareDenyWrite);
+	file1.Open(m_sZoomIn, CFile::modeRead|CFile::shareDenyWrite);
 
 	BeginWaitCursor();
 	m_DIB.Read(file1);
@@ -103,7 +102,7 @@ void CTranslationDlg::OnOK()
 //	DWORD x = m_nDirectX;
 //	DWORD y = m_nDirectY;*/
 	UpdateData(FALSE);
-	m_DIB.TranslationDIB(m_nDirectX, m_nDirectY);
+	m_DIB.ZoomDIB(m_fZoomX, m_fZoomY);
 /*	if(!success)
 		CDialog::OnOK();
 	else
@@ -117,7 +116,7 @@ void CTranslationDlg::OnOK()
 	}
 
 	CFile file2;
-	file2.Open(m_sTranslationOut, CFile::modeCreate|CFile::modeReadWrite|CFile::shareExclusive);
+	file2.Open(m_sZoomOut, CFile::modeCreate|CFile::modeReadWrite|CFile::shareExclusive);
 
 	BOOL bSuccess = FALSE;
 	BeginWaitCursor();

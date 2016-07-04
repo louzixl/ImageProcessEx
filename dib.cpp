@@ -6,11 +6,13 @@
 #include <afxadv.h>
 #include <io.h>
 #include <errno.h>
+#include <math.h>
 
 IMPLEMENT_DYNAMIC(CDib, CObject)
 //构造函数，初始化
 CDib::CDib()
 {
+	bfOffsetBits = 0;
 	m_pBMI = NULL;
 	m_pBits = NULL;
 	m_pPalette = NULL;
@@ -302,6 +304,7 @@ DWORD CDib::Read(CFile &file)
 		m_pBMI = NULL;
 		return 0;
 	}
+	bfOffsetBits = bmfHeader.bfOffBits;
 	dwReadBytes += bmfHeader.bfOffBits-sizeof(BITMAPFILEHEADER);
 
 	DWORD dwLength = file.GetLength();
@@ -822,7 +825,7 @@ BOOL CDib::TranslationDIB(DWORD dXOffset, DWORD dYOffset)
  * @param fXZoomRatio [description]X轴缩放比例
  * @param fYZoomRatio [description]Y轴缩放比例
  */
-/*void CDib::ZoomDIB(float fXZoomRatio, float fYZoomRatio)
+void CDib::ZoomDIB(float fXZoomRatio, float fYZoomRatio)
 {
 	//原图像的宽度和高度
 	LONG lWidth;
@@ -880,7 +883,7 @@ BOOL CDib::TranslationDIB(DWORD dXOffset, DWORD dYOffset)
 	lNewHeight = (LONG)(lHeight*fXZoomRatio+0.5);
 
 	//分配内存，以保存新DIB
-	lpZoomBits = (BYTE *)malloc(lNewLineBytes*lNewHeight+m_bmfHeader.bfOffBits);
+	lpZoomBits = (BYTE *)malloc(lNewLineBytes*lNewHeight+bfOffsetBits);
 
 	//判断是否内存分配失败
 	if(lpZoomBits==NULL)
@@ -889,10 +892,10 @@ BOOL CDib::TranslationDIB(DWORD dXOffset, DWORD dYOffset)
 	lpNewDIB = (unsigned char *)::GlobalLock((HGLOBAL)lpZoomBits);
 
 	//复制DIB信息头和调色板
-	memcpy(lpNewDIB, lpDIB, m_bmfHeader.bfOffBits);
+	memcpy(lpNewDIB, lpDIB, bfOffsetBits);
 
 	//找到新DIB像素起始位置
-	lpNewDIBBits = lpNewDIB + m_bmfHeader.bfOffBits;
+	lpNewDIBBits = lpNewDIB + bfOffsetBits;
 
 	//针对图像每行进行操作
 	for(i=0; i<lNewHeight; ++i){
@@ -924,13 +927,13 @@ BOOL CDib::TranslationDIB(DWORD dXOffset, DWORD dYOffset)
 	m_pBits = lpNewDIBBits;
 
 	return;
-}*/
+}
 
 /**
  * [CDib::RotateDIB description]图像旋转
  * @param iRotateAngle [description]旋转的角度（0~360°）
  */
-/*void CDib::RotateDIB(int iRotateAngle)
+void CDib::RotateDIB(int iRotateAngle)
 {
 	//原图像的宽度和高度
 	LONG lWidth;
@@ -999,7 +1002,7 @@ BOOL CDib::TranslationDIB(DWORD dXOffset, DWORD dYOffset)
 	lHeight = Height();
 
 	//将旋转角度从度转换为弧度
-	fRotateAngle = (float)RADIAN(iRotateAngle);
+	fRotateAngle = (float)(iRotateAngle*3.141592653/180.0);
 
 	//计算旋转角度的正弦和余弦
 	fSina = (float)sin((double)fRotateAngle);
@@ -1026,7 +1029,7 @@ BOOL CDib::TranslationDIB(DWORD dXOffset, DWORD dYOffset)
 	fDstY4 = -fSina*fSrcX4 + fCosa*fSrcY4;
 
 	//计算旋转后的图像实际宽度
-	lNewWidth = (LONGXmax(fabs(fDstX4-fDstX1), fabs(fDstX3-fDstX2))+0.5);
+	lNewWidth = (LONG)(max(fabs(fDstX4-fDstX1), fabs(fDstX3-fDstX2))+0.5);
 	//计算新图像每行的字节数
 	lNewLineBytes = WIDTHBYTES(lNewWidth*8);
 
@@ -1038,7 +1041,7 @@ BOOL CDib::TranslationDIB(DWORD dXOffset, DWORD dYOffset)
 	f2 = (float)(0.5*(lNewWidth-1)*fSina-0.5*(lNewHeight-1)*fCosa+0.5*(lHeight-1));
 
 	//分配内存，以保存新DIB
-	LPBYTE lpImageRotate = (BYTE *)malloc(lNewLineBytes*lNewHeight+m_bmfHeader.bfOffBits);
+	LPBYTE lpImageRotate = (BYTE *)malloc(lNewLineBytes*lNewHeight+bfOffsetBits);
 
 	//判断是否内存分配失败
 	if(lpImageRotate==NULL)
@@ -1048,10 +1051,10 @@ BOOL CDib::TranslationDIB(DWORD dXOffset, DWORD dYOffset)
 	lpNewDIB = (LPBYTE)::GlobalLock((HGLOBAL)lpImageRotate);
 
 	//复制DIB信息头和调色板
-	memcpy(lpNewDIB, lpDIB, m_bmfHeader.bfOffBits);
+	memcpy(lpNewDIB, lpDIB, bfOffsetBits);
 
 	//找到新DIB像素起始位置
-	lpNewDIBBits = lpNewDIB + m_bmfHeader.bfOffBits;
+	lpNewDIBBits = lpNewDIB + bfOffsetBits;
 
 	//针对图像每行进行操作
 	for(i=0; i<lNewHeight; ++i){
@@ -1087,12 +1090,12 @@ BOOL CDib::TranslationDIB(DWORD dXOffset, DWORD dYOffset)
 
 	//返回
 	return;
-}*/
+}
 
 /**
  * [TransposeDIB description]图像转置
  */
- /*void CDib::TransposeDIB()
+void CDib::TransposeDIB()
 {
 	//图像的宽度和高度
 	LONG lWidth;
@@ -1166,4 +1169,4 @@ BOOL CDib::TranslationDIB(DWORD dXOffset, DWORD dYOffset)
 	LocalUnlock(hNewDIBBits);
 
 	return;
-}*/
+}

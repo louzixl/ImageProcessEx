@@ -12,6 +12,9 @@
 #define IDD_DIALOG_HIGHPASS             134
 #define IDD_DIALOG_MIDDLEPASS           135
 #define IDD_DIALOG_TRANSLATION          136
+#define IDD_DIALOG_ZOOM                 137
+#define IDD_DIALOG_ROTATE               138
+#define IDD_DIALOG_TRANSPOSE            139
 #define IDC_EDIT_RAWCIN                 1000
 #define IDC_BUTTON_RAWVIEW              1003
 #define IDC_EDIT_BMPCIN                 1004
@@ -69,7 +72,31 @@
 #define IDC_EDIT_DIRECTX                1045
 #define IDC_STATIC_DIRECTX              1046
 #define IDC_STATIC_DIRECTY              1047
+#define IDC_EDIT_ZOOMIN                 1048
 #define IDC_EDIT_DIRECTY                1049
+#define IDC_BUTTON_ZOOMIN               1049
+#define IDC_STATIC_ZOOMIN               1050
+#define IDC_STATIC_ZOOMOUT              1051
+#define IDC_EDIT_ZOOMOUT                1052
+#define IDC_BUTTON_ZOOMOUT              1053
+#define IDC_EDIT_XZOOMRATIO             1054
+#define IDC_STATIC_XZOOMRATIO           1055
+#define IDC_EDIT_ROTATEIN               1056
+#define IDC_BUTTON_ROTATEIN             1057
+#define IDC_STATIC_YZOOMRATIO           1058
+#define IDC_STATIC_ROTATEIN             1058
+#define IDC_EDIT_YZOOMRATIO             1059
+#define IDC_STATIC_ROTATEOUT            1059
+#define IDC_EDIT_ROTATEOUT              1060
+#define IDC_BUTTON_ROTATEOUT            1061
+#define IDC_EDIT_ROTATEANGEL            1062
+#define IDC_STATIC_ROTATEANGEL          1063
+#define IDC_EDIT_TRANSPOSEIN            1064
+#define IDC_BUTTON_TRANSPOSEIN          1065
+#define IDC_STATIC_TRANSPOSEIN          1066
+#define IDC_STATIC_TRANSPOSEOUT         1067
+#define IDC_EDIT_TRANSPOSEOUT           1068
+#define IDC_BUTTON_TRANSPOSEOUT         1069
 #define ID_RAWTOBMP                     32771
 #define ID_LINEARENHENCE                32772
 #define ID_HISTOEQUIVALIZE              32773
@@ -86,9 +113,9 @@
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        137
+#define _APS_NEXT_RESOURCE_VALUE        140
 #define _APS_NEXT_COMMAND_VALUE         32782
-#define _APS_NEXT_CONTROL_VALUE         1048
+#define _APS_NEXT_CONTROL_VALUE         1067
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

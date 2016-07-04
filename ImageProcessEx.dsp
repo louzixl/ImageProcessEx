@@ -138,6 +138,10 @@ SOURCE=.\MiddlePassDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\RotateDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\RowToBmpDlg.cpp
 # End Source File
 # Begin Source File
@@ -147,7 +151,19 @@ SOURCE=.\StdAfx.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\Translation.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\TranslationDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\TransposeDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\ZoomDlg.cpp
 # End Source File
 # End Group
 # Begin Group "Header Files"
@@ -203,6 +219,10 @@ SOURCE=.\Resource.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\RotateDlg.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\RowToBmpDlg.h
 # End Source File
 # Begin Source File
@@ -211,7 +231,19 @@ SOURCE=.\StdAfx.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\Translation.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\TranslationDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\TransposeDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\ZoomDlg.h
 # End Source File
 # End Group
 # Begin Group "Resource Files"

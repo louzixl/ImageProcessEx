@@ -23,8 +23,8 @@ public:
 	enum { IDD = IDD_DIALOG_TRANSLATION };
 	CString	m_sTranslationIn;
 	CString	m_sTranslationOut;
-	int		m_nDirectX;
-	int		m_nDirectY;
+	DWORD	m_nDirectX;
+	DWORD	m_nDirectY;
 	//}}AFX_DATA
 
 

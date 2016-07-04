@@ -6,14 +6,13 @@
 --------------------Configuration: ImageProcessEx - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP976A.tmp" with contents
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP2A9D.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/ImageProcessEx.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"F:\PRACTICE\VC++6.0_PRACTICE\ImageProcessEx\ImageProcessExView.cpp"
-"F:\practice\VC++6.0_practice\ImageProcessEx\TranslationDlg.cpp"
+"F:\PRACTICE\VC++6.0_PRACTICE\ImageProcessEx\dib.cpp"
 ]
-Creating command line "cl.exe @"C:\Users\建生\AppData\Local\Temp\RSP976A.tmp"" 
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP976B.tmp" with contents
+Creating command line "cl.exe @"C:\Users\建生\AppData\Local\Temp\RSP2A9D.tmp"" 
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP2A9E.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ImageProcessEx.pdb" /debug /machine:I386 /out:"Debug/ImageProcessEx.exe" /pdbtype:sept 
 ".\Debug\ChildFrm.obj"
@@ -29,19 +28,19 @@ Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP976B.tmp" with cont
 ".\Debug\MiddlePassDlg.obj"
 ".\Debug\RowToBmpDlg.obj"
 ".\Debug\StdAfx.obj"
-".\Debug\ImageProcessEx.res"
 ".\Debug\TranslationDlg.obj"
+".\Debug\ZoomDlg.obj"
+".\Debug\ImageProcessEx.res"
+".\Debug\RotateDlg.obj"
+".\Debug\Translation.obj"
+".\Debug\TransposeDlg.obj"
 ]
-Creating command line "link.exe @"C:\Users\建生\AppData\Local\Temp\RSP976B.tmp""
+Creating command line "link.exe @"C:\Users\建生\AppData\Local\Temp\RSP2A9E.tmp""
 <h3>Output Window</h3>
 Compiling...
-TranslationDlg.cpp
-Generating Code...
-Compiling...
-ImageProcessExView.cpp
-Generating Code...
+dib.cpp
 Linking...
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP9895.tmp" with contents
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP2E68.tmp" with contents
 [
 /nologo /o"Debug/ImageProcessEx.bsc" 
 ".\Debug\StdAfx.sbr"
@@ -57,8 +56,12 @@ Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP9895.tmp" with cont
 ".\Debug\MainFrm.sbr"
 ".\Debug\MiddlePassDlg.sbr"
 ".\Debug\RowToBmpDlg.sbr"
-".\Debug\TranslationDlg.sbr"]
-Creating command line "bscmake.exe @"C:\Users\建生\AppData\Local\Temp\RSP9895.tmp""
+".\Debug\TranslationDlg.sbr"
+".\Debug\ZoomDlg.sbr"
+".\Debug\RotateDlg.sbr"
+".\Debug\Translation.sbr"
+".\Debug\TransposeDlg.sbr"]
+Creating command line "bscmake.exe @"C:\Users\建生\AppData\Local\Temp\RSP2E68.tmp""
 Creating browse info file...
 <h3>Output Window</h3>
 

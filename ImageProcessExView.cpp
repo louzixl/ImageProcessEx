@@ -13,6 +13,9 @@
 #include "HighPassDlg.h"
 #include "MiddlePassDlg.h"
 #include "TranslationDlg.h"
+#include "ZoomDlg.h"
+#include "RotateDlg.h"
+#include "TransposeDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -35,6 +38,8 @@ BEGIN_MESSAGE_MAP(CImageProcessExView, CScrollView)
 	ON_COMMAND(ID_MIDDLEPASS, OnMiddlepass)
 	ON_COMMAND(ID_TRANSPOSITION, OnTransposition)
 	ON_COMMAND(ID_TRANSLATION, OnTranslation)
+	ON_COMMAND(ID_ZOOM, OnZoom)
+	ON_COMMAND(ID_ROTATE, OnRotate)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
@@ -199,12 +204,27 @@ void CImageProcessExView::OnMiddlepass()
 void CImageProcessExView::OnTransposition() 
 {
 	// TODO: Add your command handler code here
-	
+	CTransposeDlg dlg;
+	dlg.DoModal();
 }
 
 void CImageProcessExView::OnTranslation() 
 {
 	// TODO: Add your command handler code here
 	CTranslationDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnZoom() 
+{
+	// TODO: Add your command handler code here
+	CZoomDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnRotate() 
+{
+	// TODO: Add your command handler code here
+	CRotateDlg dlg;
 	dlg.DoModal();
 }

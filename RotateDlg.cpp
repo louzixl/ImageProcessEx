@@ -1,9 +1,9 @@
-// TranslationDlg.cpp : implementation file
+// RotateDlg.cpp : implementation file
 //
 
 #include "stdafx.h"
 #include "ImageProcessEx.h"
-#include "TranslationDlg.h"
+#include "RotateDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -12,45 +12,42 @@ static char THIS_FILE[] = __FILE__;
 #endif
 
 /////////////////////////////////////////////////////////////////////////////
-// CTranslationDlg dialog
+// CRotateDlg dialog
 
 
-CTranslationDlg::CTranslationDlg(CWnd* pParent /*=NULL*/)
-	: CDialog(CTranslationDlg::IDD, pParent)
+CRotateDlg::CRotateDlg(CWnd* pParent /*=NULL*/)
+	: CDialog(CRotateDlg::IDD, pParent)
 {
-	//{{AFX_DATA_INIT(CTranslationDlg)
-	m_sTranslationIn = _T("");
-	m_sTranslationOut = _T("");
-	m_nDirectX = 0;
-	m_nDirectY = 0;
+	//{{AFX_DATA_INIT(CRotateDlg)
+	m_nRotateAngel = 0;
+	m_sRotateIn = _T("");
+	m_sRotateOut = _T("");
 	//}}AFX_DATA_INIT
 }
 
 
-void CTranslationDlg::DoDataExchange(CDataExchange* pDX)
+void CRotateDlg::DoDataExchange(CDataExchange* pDX)
 {
 	CDialog::DoDataExchange(pDX);
-	//{{AFX_DATA_MAP(CTranslationDlg)
-	DDX_Text(pDX, IDC_EDIT_TRANSLATIONIN, m_sTranslationIn);
-	DDX_Text(pDX, IDC_EDIT_TRANSLATIONOUT, m_sTranslationOut);
-	DDX_Text(pDX, IDC_EDIT_DIRECTX, m_nDirectX);
-	DDX_Text(pDX, IDC_EDIT_DIRECTY, m_nDirectY);
-	DDV_MinMaxDWord(pDX, m_nDirectY, 0, 255);
+	//{{AFX_DATA_MAP(CRotateDlg)
+	DDX_Text(pDX, IDC_EDIT_ROTATEANGEL, m_nRotateAngel);
+	DDX_Text(pDX, IDC_EDIT_ROTATEIN, m_sRotateIn);
+	DDX_Text(pDX, IDC_EDIT_ROTATEOUT, m_sRotateOut);
 	//}}AFX_DATA_MAP
 }
 
 
-BEGIN_MESSAGE_MAP(CTranslationDlg, CDialog)
-	//{{AFX_MSG_MAP(CTranslationDlg)
-	ON_BN_CLICKED(IDC_BUTTON_TRANSLATIONIN, OnButtonTranslationin)
-	ON_BN_CLICKED(IDC_BUTTON_TRANSLATIONOUT, OnButtonTranslationout)
+BEGIN_MESSAGE_MAP(CRotateDlg, CDialog)
+	//{{AFX_MSG_MAP(CRotateDlg)
+	ON_BN_CLICKED(IDC_BUTTON_ROTATEIN, OnButtonRotatein)
+	ON_BN_CLICKED(IDC_BUTTON_ROTATEOUT, OnButtonRotateout)
 	//}}AFX_MSG_MAP
 END_MESSAGE_MAP()
 
 /////////////////////////////////////////////////////////////////////////////
-// CTranslationDlg message handlers
+// CRotateDlg message handlers
 
-void CTranslationDlg::OnButtonTranslationin() 
+void CRotateDlg::OnButtonRotatein() 
 {
 	// TODO: Add your control notification handler code here
 	//文件类型说明字符串
@@ -63,12 +60,12 @@ void CTranslationDlg::OnButtonTranslationin()
 	CString FileName;
 	FileName = SelectFile.GetPathName();
 	//将得到的文件名赋给格式转换对话框的成员变量m_sLinearTransIn
-	m_sTranslationIn = FileName;
+	m_sRotateIn = FileName;
 	//数据刷新，即将m_sLinearTransIn新得到的值显示在对话框中对应的控件上（注意参数false）
 	UpdateData(FALSE);
 }
 
-void CTranslationDlg::OnButtonTranslationout() 
+void CRotateDlg::OnButtonRotateout() 
 {
 	// TODO: Add your control notification handler code here
 	static char BASED_CODE file[] = "BMP Files(*.bmp)|*.bmp|所有文件(*.*)|*.*||";
@@ -77,33 +74,19 @@ void CTranslationDlg::OnButtonTranslationout()
 	SelectFile.DoModal();
 	CString FileName;
 	FileName = SelectFile.GetPathName();
-	m_sTranslationOut = FileName;
+	m_sRotateOut = FileName;
 	UpdateData(FALSE);
 }
 
-void CTranslationDlg::OnOK() 
+void CRotateDlg::OnOK() 
 {
 	// TODO: Add extra validation here
 	CFile file1;
-	file1.Open(m_sTranslationIn, CFile::modeRead|CFile::shareDenyWrite);
+	file1.Open(m_sRotateIn, CFile::modeRead|CFile::shareDenyWrite);
 
 	BeginWaitCursor();
 	m_DIB.Read(file1);
-
-	/*UpdateData(FALSE);
-	CString m_nDirectX;
-	GetDlgItemText(IDC_EDIT_DIRECTX,m_nDirectX);
-	int x;
-	x=atoi(m_nDirectX);
-	CString m_nDirectY;
-	GetDlgItemText(IDC_EDIT_DIRECTY,m_nDirectY);
-	int y;
-	y=atoi(m_nDirectY);
-	UpdateData(FALSE);
-//	DWORD x = m_nDirectX;
-//	DWORD y = m_nDirectY;*/
-	UpdateData(FALSE);
-	m_DIB.TranslationDIB(m_nDirectX, m_nDirectY);
+	m_DIB.RotateDIB(m_nRotateAngel);
 /*	if(!success)
 		CDialog::OnOK();
 	else
@@ -117,7 +100,7 @@ void CTranslationDlg::OnOK()
 	}
 
 	CFile file2;
-	file2.Open(m_sTranslationOut, CFile::modeCreate|CFile::modeReadWrite|CFile::shareExclusive);
+	file2.Open(m_sRotateOut, CFile::modeCreate|CFile::modeReadWrite|CFile::shareExclusive);
 
 	BOOL bSuccess = FALSE;
 	BeginWaitCursor();

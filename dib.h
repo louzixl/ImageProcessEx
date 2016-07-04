@@ -21,6 +21,7 @@ class CDib:public CObject
 public:
 	CDib();
 protected:
+	DWORD bfOffsetBits;
 	LPBYTE m_pBits;
 	LPBITMAPINFO m_pBMI;
 public:
@@ -43,9 +44,9 @@ public:
 	BOOL HighPassDib();
 	BOOL MedianFilterDIB();
 	BOOL TranslationDIB(DWORD dXOffset, DWORD dYOffset);
-//	void ZoomDIB(float fXZoomRatio, float fYZoomRatio);
-//	void RotateDIB(int iRotateAngle);
-//	void TransposeDIB();
+	void ZoomDIB(float fXZoomRatio, float fYZoomRatio);
+	void RotateDIB(int iRotateAngle);
+	void TransposeDIB();
 
 	LPBYTE RETURN()
 	{
