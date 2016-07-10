@@ -15,6 +15,8 @@
 #define IDD_DIALOG_ZOOM                 137
 #define IDD_DIALOG_ROTATE               138
 #define IDD_DIALOG_TRANSPOSE            139
+#define IDD_DIALOG_FOURIE               140
+#define IDD_DIALOG_IFOURIE              141
 #define IDC_EDIT_RAWCIN                 1000
 #define IDC_BUTTON_RAWVIEW              1003
 #define IDC_EDIT_BMPCIN                 1004
@@ -95,8 +97,20 @@
 #define IDC_BUTTON_TRANSPOSEIN          1065
 #define IDC_STATIC_TRANSPOSEIN          1066
 #define IDC_STATIC_TRANSPOSEOUT         1067
+#define IDC_EDIT_FOURIEIN               1067
 #define IDC_EDIT_TRANSPOSEOUT           1068
+#define IDC_BUTTON_FOURIEIN             1068
 #define IDC_BUTTON_TRANSPOSEOUT         1069
+#define IDC_STATIC_FOURIEIN             1069
+#define IDC_STATIC_FOURIEOUT            1070
+#define IDC_EDIT_FOURIEOUT              1071
+#define IDC_BUTTON_IFOURIEIN            1071
+#define IDC_BUTTON_FOURIEOUT            1072
+#define IDC_STATIC_IFOURIEIN            1072
+#define IDC_EDIT_IFOURIEIN              1073
+#define IDC_STATIC_IFOURIEOUT           1074
+#define IDC_EDIT_IFOURIEOUT             1075
+#define IDC_BUTTON_IFOURIEOUT           1076
 #define ID_RAWTOBMP                     32771
 #define ID_LINEARENHENCE                32772
 #define ID_HISTOEQUIVALIZE              32773
@@ -107,15 +121,17 @@
 #define ID_ZOOM                         32779
 #define ID_ROTATE                       32780
 #define ID_TRANSPOSITION                32781
+#define ID_FOURIE                       32782
+#define ID_IFOURIE                      32783
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        140
-#define _APS_NEXT_COMMAND_VALUE         32782
-#define _APS_NEXT_CONTROL_VALUE         1067
+#define _APS_NEXT_RESOURCE_VALUE        142
+#define _APS_NEXT_COMMAND_VALUE         32784
+#define _APS_NEXT_CONTROL_VALUE         1074
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif

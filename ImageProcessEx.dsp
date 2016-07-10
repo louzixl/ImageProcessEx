@@ -98,11 +98,19 @@ SOURCE=.\dib.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\FourieDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\HighPassDlg.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\HistoEquivalize.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\IFourieDlg.cpp
 # End Source File
 # Begin Source File
 
@@ -179,11 +187,19 @@ SOURCE=.\dib.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\FourieDlg.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\HighPassDlg.h
 # End Source File
 # Begin Source File
 
 SOURCE=.\HistoEquivalize.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\IFourieDlg.h
 # End Source File
 # Begin Source File
 

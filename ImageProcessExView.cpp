@@ -16,6 +16,8 @@
 #include "ZoomDlg.h"
 #include "RotateDlg.h"
 #include "TransposeDlg.h"
+#include "FourieDlg.h"
+#include "IFourieDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -40,6 +42,8 @@ BEGIN_MESSAGE_MAP(CImageProcessExView, CScrollView)
 	ON_COMMAND(ID_TRANSLATION, OnTranslation)
 	ON_COMMAND(ID_ZOOM, OnZoom)
 	ON_COMMAND(ID_ROTATE, OnRotate)
+	ON_COMMAND(ID_FOURIE, OnFourie)
+	ON_COMMAND(ID_IFOURIE, OnIfourie)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
@@ -226,5 +230,19 @@ void CImageProcessExView::OnRotate()
 {
 	// TODO: Add your command handler code here
 	CRotateDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnFourie() 
+{
+	// TODO: Add your command handler code here
+	CFourieDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnIfourie() 
+{
+	// TODO: Add your command handler code here
+	CIFourieDlg dlg;
 	dlg.DoModal();
 }

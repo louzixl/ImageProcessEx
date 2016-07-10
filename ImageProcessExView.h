@@ -59,6 +59,8 @@ protected:
 	afx_msg void OnTranslation();
 	afx_msg void OnZoom();
 	afx_msg void OnRotate();
+	afx_msg void OnFourie();
+	afx_msg void OnIfourie();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

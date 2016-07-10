@@ -13,6 +13,9 @@
 //WIDTHBYTES表示图像扫描行宽
 #define WIDTHBYTES(bits) (((bits)+31)/32*4)
 
+#include <complex>
+using std::complex;
+
 //CDib类定义
 class CDib:public CObject
 {
@@ -47,6 +50,11 @@ public:
 	void ZoomDIB(float fXZoomRatio, float fYZoomRatio);
 	void RotateDIB(int iRotateAngle);
 	void TransposeDIB();
+	void FastFourie(complex<double> *pCTData, complex<double> *pCFData, int nLevel);
+	void Fourie(complex<double> *pCTData, int nWidth, int nHeight, complex<double> *pCFData);
+	void IFourie(complex<double> *pCFData, complex<double> *pCTData, int nWidth, int nHeight);
+//	void ButterWorthLowPass(LPBYTE lpImage, int nWidth, int nHeight, int nRadius);
+//	void ButterWorthHighPass(LPBYTE lpImage, int nWidth, int nHeight, int nRadius);
 
 	LPBYTE RETURN()
 	{
