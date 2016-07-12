@@ -1402,7 +1402,7 @@ void CDib::IFourie(complex<double> *pCFData, complex<double> *pCTData, int nWidt
  * @param nHeight [description]数据高度
  * @param nRadius [description]ButterWorth低通滤波的“半功率”点
  */
-/*void CDib::ButterWorthLowPass(LPBYTE lpImage, int nWidth, int nHeight, int nRadius)
+void CDib::ButterWorthLowPass(LPBYTE lpImage, int nWidth, int nHeight, int nRadius)
 {
 	int x, y;
 
@@ -1490,7 +1490,7 @@ void CDib::IFourie(complex<double> *pCFData, complex<double> *pCTData, int nWidt
 	pCTData = NULL;
 	pCFData = NULL;
 }
-*/
+
 /**
  * [ButterWorthHighPass description]ButterWorth高通滤波
  * @param lpImage [description]指向需要增强的图像数据
@@ -1498,7 +1498,7 @@ void CDib::IFourie(complex<double> *pCFData, complex<double> *pCTData, int nWidt
  * @param nHeight [description]数据高度
  * @param nRadius [description]ButterWorth高通滤波的“半功率”点
  */
-/*void CDib::ButterWorthHighPass(LPBYTE lpImage, int nWidth, int nHeight, int nRadius)
+void CDib::ButterWorthHighPass(LPBYTE lpImage, int nWidth, int nHeight, int nRadius)
 {
 	int x, y;
 
@@ -1585,4 +1585,217 @@ void CDib::IFourie(complex<double> *pCFData, complex<double> *pCTData, int nWidt
 	pCTData = NULL;
 	pCFData = NULL;
 }
-*/
+
+/**
+ * [CDib::RobertsDIB description]Roberts算子
+ * @return [description]
+ */
+BOOL CDib::RobertsDIB()
+{
+	if(m_pBMI==NULL)
+		return FALSE;
+
+	//获得实际的位图数据占用的字节数
+	DWORD m_dwSizeImage = m_pBMI->bmiHeader.biSizeImage;
+
+	LPBYTE m_lpImageCopy = (BYTE *)malloc(m_dwSizeImage);
+	if(m_lpImageCopy==NULL){
+		SetCursor(LoadCursor(NULL, IDC_ARROW));
+		AfxMessageBox("Memory Allocate Error");
+		return FALSE;
+	}
+
+	memcpy(m_lpImageCopy, m_pBits, m_dwSizeImage);
+
+	DWORD nWidth = Width();
+	DWORD nHeight = Height();
+	WORD wBitCount = m_pBMI->bmiHeader.biBitCount;
+	DWORD lRowBytes = WIDTHBYTES(nWidth*((DWORD)wBitCount));
+	LPBYTE lpData = m_pBits;
+	LPBYTE lpOldBits = m_lpImageCopy;
+
+	//图像变换开始
+	DWORD i, j;
+
+	if(wBitCount==8){
+		for(i=0; i<nWidth; ++i){
+			for(j=0; j<nHeight; ++j){
+				*(lpData+lRowBytes*i+j) = abs(*(lpOldBits+lRowBytes*(i+1)+(j+1))-*(lpOldBits+lRowBytes*i+j));
+			}
+		}
+	}
+
+	return TRUE;
+}
+
+/**
+ * [CDib::PrewittDIB description]Prewitt算子
+ * @param  tag [description]参数r
+ * @return     [description]
+ */
+BOOL CDib::PrewittDIB(int tag)
+{
+	if(m_pBMI==NULL)
+		return FALSE;
+
+	//获得实际的位图数据占用的字节数
+	DWORD m_dwSizeImage = m_pBMI->bmiHeader.biSizeImage;
+
+	LPBYTE m_lpImageCopy = (BYTE *)malloc(m_dwSizeImage);
+	if(m_lpImageCopy==NULL){
+		SetCursor(LoadCursor(NULL, IDC_ARROW));
+		AfxMessageBox("Memory Allocate Error");
+		return FALSE;
+	}
+
+	memcpy(m_lpImageCopy, m_pBits, m_dwSizeImage);
+
+	DWORD nWidth = Width();
+	DWORD nHeight = Height();
+	WORD wBitCount = m_pBMI->bmiHeader.biBitCount;
+	DWORD lRowBytes = WIDTHBYTES(nWidth*((DWORD)wBitCount));
+	LPBYTE lpData = m_pBits;
+	LPBYTE lpOldBits = m_lpImageCopy;
+
+	//图像变换开始
+	DWORD i, j, m, n;
+	float sum;
+	int t, Prewitt[9];
+
+	//设置Prewitt算子
+	if(tag==0) //检测垂直
+	{
+		Prewitt[0] = -1;
+		Prewitt[1] = 0;
+		Prewitt[2] = 1;
+		Prewitt[3] = -1;
+		Prewitt[4] = 0;
+		Prewitt[5] = 1;
+		Prewitt[6] = -1;
+		Prewitt[7] = 0;
+		Prewitt[8] = 1;
+	}
+	else if(tag==1) //检测水平
+	{
+		Prewitt[0] = -1;
+		Prewitt[1] = -1;
+		Prewitt[2] = -1;
+		Prewitt[3] = 0;
+		Prewitt[4] = 0;
+		Prewitt[5] = 0;
+		Prewitt[6] = 1;
+		Prewitt[7] = 1;
+		Prewitt[8] = 1;		
+	}
+	else
+		return FALSE;
+
+	if(wBitCount==8){
+		for(i=1; i<nHeight-1; ++i){
+			for(j=1; j<nWidth-1; ++j){
+				sum = 0;
+				t = 0;
+				//3X3模板运算
+				for(m=0; m<3; ++m){
+					for(n=0; n<3; ++n){
+						sum += *(lpOldBits+lRowBytes*(i-1+m)+(j-1+n))*Prewitt[t++];
+					}
+				}
+				if(sum<0)
+					*(lpData+lRowBytes*i+j) = 0;
+				else if(sum>255)
+					*(lpData+lRowBytes*i+j) = 255;
+				else
+					*(lpData+lRowBytes*i+j) = (unsigned char)sum;
+			}
+		}
+	}
+
+	return TRUE;
+}
+
+/**
+ * [CDib::SobelDIB description]Sobel算子
+ * @param  tag [description]参数
+ * @return     [description]
+ */
+BOOL CDib::SobelDIB(int tag)
+{
+	if(m_pBMI==NULL)
+		return FALSE;
+
+	//获得实际的位图数据占用的字节数
+	DWORD m_dwSizeImage = m_pBMI->bmiHeader.biSizeImage;
+
+	LPBYTE m_lpImageCopy = (BYTE *)malloc(m_dwSizeImage);
+	if(m_lpImageCopy==NULL){
+		SetCursor(LoadCursor(NULL, IDC_ARROW));
+		AfxMessageBox("Memory Allocate Error");
+		return FALSE;
+	}
+
+	memcpy(m_lpImageCopy, m_pBits, m_dwSizeImage);
+
+	DWORD nWidth = Width();
+	DWORD nHeight = Height();
+	WORD wBitCount = m_pBMI->bmiHeader.biBitCount;
+	DWORD lRowBytes = WIDTHBYTES(nWidth*((DWORD)wBitCount));
+	LPBYTE lpData = m_pBits;
+	LPBYTE lpOldBits = m_lpImageCopy;
+
+	//图像变换开始
+	DWORD i, j, m, n;
+	float sum;
+	int t, Sobel[9];
+
+	//设置Sobel算子
+	if(tag==0) //检测垂直
+	{
+		Sobel[0] = -1;
+		Sobel[1] = 0;
+		Sobel[2] = 1;
+		Sobel[3] = -2;
+		Sobel[4] = 0;
+		Sobel[5] = 2;
+		Sobel[6] = -1;
+		Sobel[7] = 0;
+		Sobel[8] = 1;
+	}
+	else if(tag==1) //检测水平
+	{
+		Sobel[0] = -1;
+		Sobel[1] =-2;
+		Sobel[2] = 1;
+		Sobel[3] = 0;
+		Sobel[4] = 0;
+		Sobel[5] = 0;
+		Sobel[6] = 1;
+		Sobel[7] = 2;
+		Sobel[8] = 1;
+	}
+	else
+		return FALSE;
+
+	if(wBitCount==8){
+		for(i=1; i<nHeight-1; ++i){
+			for(j=1; j<nWidth-1; ++j){
+				sum = 0;
+				t = 0;
+				//3X3模板运算
+				for(m=0; m<3; ++m){
+					for(n=0; n<3; ++n){
+						sum += *(lpOldBits+lRowBytes*(i-1+m)+(j-1+n))*Sobel[t++];
+					}
+				}
+				if(sum<0)
+					*(lpData+lRowBytes*i+j) = 0;
+				else if(sum>255)
+					*(lpData+lRowBytes*i+j) = 255;
+				else
+					*(lpData+lRowBytes*i+j) = (unsigned char)sum;
+			}
+		}
+	}
+
+	return TRUE;
+}

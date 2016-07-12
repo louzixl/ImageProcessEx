@@ -90,6 +90,14 @@ LINK32=link.exe
 # PROP Default_Filter "cpp;c;cxx;rc;def;r;odl;idl;hpj;bat"
 # Begin Source File
 
+SOURCE=.\BWHighpassDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\BWLowpassDlg1.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\ChildFrm.cpp
 # End Source File
 # Begin Source File
@@ -146,11 +154,23 @@ SOURCE=.\MiddlePassDlg.cpp
 # End Source File
 # Begin Source File
 
+SOURCE=.\PrewittDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\RobertsDlg.cpp
+# End Source File
+# Begin Source File
+
 SOURCE=.\RotateDlg.cpp
 # End Source File
 # Begin Source File
 
 SOURCE=.\RowToBmpDlg.cpp
+# End Source File
+# Begin Source File
+
+SOURCE=.\SobelDlg.cpp
 # End Source File
 # Begin Source File
 
@@ -177,6 +197,14 @@ SOURCE=.\ZoomDlg.cpp
 # Begin Group "Header Files"
 
 # PROP Default_Filter "h;hpp;hxx;hm;inl"
+# Begin Source File
+
+SOURCE=.\BWHighpassDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\BWLowpassDlg1.h
+# End Source File
 # Begin Source File
 
 SOURCE=.\ChildFrm.h
@@ -231,7 +259,15 @@ SOURCE=.\MiddlePassDlg.h
 # End Source File
 # Begin Source File
 
+SOURCE=.\PrewittDlg.h
+# End Source File
+# Begin Source File
+
 SOURCE=.\Resource.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\RobertsDlg.h
 # End Source File
 # Begin Source File
 
@@ -240,6 +276,10 @@ SOURCE=.\RotateDlg.h
 # Begin Source File
 
 SOURCE=.\RowToBmpDlg.h
+# End Source File
+# Begin Source File
+
+SOURCE=.\SobelDlg.h
 # End Source File
 # Begin Source File
 

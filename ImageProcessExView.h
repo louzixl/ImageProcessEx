@@ -61,6 +61,11 @@ protected:
 	afx_msg void OnRotate();
 	afx_msg void OnFourie();
 	afx_msg void OnIfourie();
+	afx_msg void OnBwhighpass();
+	afx_msg void OnBwlowpass();
+	afx_msg void OnRoberts();
+	afx_msg void OnPrewitt();
+	afx_msg void OnSobel();
 	//}}AFX_MSG
 	DECLARE_MESSAGE_MAP()
 };

@@ -18,6 +18,11 @@
 #include "TransposeDlg.h"
 #include "FourieDlg.h"
 #include "IFourieDlg.h"
+#include "BWHighpassDlg.h"
+#include "BWLowpassDlg1.h"
+#include "RobertsDlg.h"
+#include "PrewittDlg.h"
+#include "SobelDlg.h"
 
 #ifdef _DEBUG
 #define new DEBUG_NEW
@@ -44,6 +49,11 @@ BEGIN_MESSAGE_MAP(CImageProcessExView, CScrollView)
 	ON_COMMAND(ID_ROTATE, OnRotate)
 	ON_COMMAND(ID_FOURIE, OnFourie)
 	ON_COMMAND(ID_IFOURIE, OnIfourie)
+	ON_COMMAND(ID_BWHIGHPASS, OnBwhighpass)
+	ON_COMMAND(ID_BWLOWPASS, OnBwlowpass)
+	ON_COMMAND(ID_ROBERTS, OnRoberts)
+	ON_COMMAND(ID_PREWITT, OnPrewitt)
+	ON_COMMAND(ID_SOBEL, OnSobel)
 	//}}AFX_MSG_MAP
 	// Standard printing commands
 	ON_COMMAND(ID_FILE_PRINT, CScrollView::OnFilePrint)
@@ -244,5 +254,40 @@ void CImageProcessExView::OnIfourie()
 {
 	// TODO: Add your command handler code here
 	CIFourieDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnBwhighpass() 
+{
+	// TODO: Add your command handler code here
+	CBWHighpassDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnBwlowpass() 
+{
+	// TODO: Add your command handler code here
+	CBWLowpassDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnRoberts() 
+{
+	// TODO: Add your command handler code here
+	CRobertsDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnPrewitt() 
+{
+	// TODO: Add your command handler code here
+	CPrewittDlg dlg;
+	dlg.DoModal();
+}
+
+void CImageProcessExView::OnSobel() 
+{
+	// TODO: Add your command handler code here
+	CSobelDlg dlg;
 	dlg.DoModal();
 }

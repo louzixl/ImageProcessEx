@@ -6,20 +6,26 @@
 --------------------Configuration: ImageProcessEx - Win32 Debug--------------------
 </h3>
 <h3>Command Lines</h3>
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSPC367.tmp" with contents
+Creating command line "rc.exe /l 0x804 /fo"Debug/ImageProcessEx.res" /d "_DEBUG" /d "_AFXDLL" "F:\PRACTICE\VC++6.0_PRACTICE\ImageProcessEx\ImageProcessEx.rc"" 
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP51FF.tmp" with contents
 [
 /nologo /MDd /W3 /Gm /GX /ZI /Od /D "WIN32" /D "_DEBUG" /D "_WINDOWS" /D "_AFXDLL" /D "_MBCS" /FR"Debug/" /Fp"Debug/ImageProcessEx.pch" /Yu"stdafx.h" /Fo"Debug/" /Fd"Debug/" /FD /GZ /c 
-"F:\practice\VC++6.0_practice\ImageProcessEx\IFourieDlg.cpp"
+"F:\PRACTICE\VC++6.0_PRACTICE\ImageProcessEx\ImageProcessEx.cpp"
+"F:\PRACTICE\VC++6.0_PRACTICE\ImageProcessEx\ImageProcessExView.cpp"
+"F:\practice\VC++6.0_practice\ImageProcessEx\SobelDlg.cpp"
 ]
-Creating command line "cl.exe @"C:\Users\建生\AppData\Local\Temp\RSPC367.tmp"" 
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSPC368.tmp" with contents
+Creating command line "cl.exe @"C:\Users\建生\AppData\Local\Temp\RSP51FF.tmp"" 
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP5200.tmp" with contents
 [
 /nologo /subsystem:windows /incremental:yes /pdb:"Debug/ImageProcessEx.pdb" /debug /machine:I386 /out:"Debug/ImageProcessEx.exe" /pdbtype:sept 
+".\Debug\BWHighpassDlg.obj"
+".\Debug\BWLowpassDlg1.obj"
 ".\Debug\ChildFrm.obj"
 ".\Debug\dib.obj"
 ".\Debug\FourieDlg.obj"
 ".\Debug\HighPassDlg.obj"
 ".\Debug\HistoEquivalize.obj"
+".\Debug\IFourieDlg.obj"
 ".\Debug\ImageProcessEx.obj"
 ".\Debug\ImageProcessExDoc.obj"
 ".\Debug\ImageProcessExView.obj"
@@ -35,22 +41,32 @@ Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSPC368.tmp" with cont
 ".\Debug\TransposeDlg.obj"
 ".\Debug\ZoomDlg.obj"
 ".\Debug\ImageProcessEx.res"
-".\Debug\IFourieDlg.obj"
+".\Debug\RobertsDlg.obj"
+".\Debug\PrewittDlg.obj"
+".\Debug\SobelDlg.obj"
 ]
-Creating command line "link.exe @"C:\Users\建生\AppData\Local\Temp\RSPC368.tmp""
+Creating command line "link.exe @"C:\Users\建生\AppData\Local\Temp\RSP5200.tmp""
 <h3>Output Window</h3>
+Compiling resources...
 Compiling...
-IFourieDlg.cpp
+ImageProcessExView.cpp
+SobelDlg.cpp
+Generating Code...
+Skipping... (no relevant changes detected)
+ImageProcessEx.cpp
 Linking...
-Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSPC57D.tmp" with contents
+Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSP56B4.tmp" with contents
 [
 /nologo /o"Debug/ImageProcessEx.bsc" 
 ".\Debug\StdAfx.sbr"
+".\Debug\BWHighpassDlg.sbr"
+".\Debug\BWLowpassDlg1.sbr"
 ".\Debug\ChildFrm.sbr"
 ".\Debug\dib.sbr"
 ".\Debug\FourieDlg.sbr"
 ".\Debug\HighPassDlg.sbr"
 ".\Debug\HistoEquivalize.sbr"
+".\Debug\IFourieDlg.sbr"
 ".\Debug\ImageProcessEx.sbr"
 ".\Debug\ImageProcessExDoc.sbr"
 ".\Debug\ImageProcessExView.sbr"
@@ -64,8 +80,10 @@ Creating temporary file "C:\Users\建生\AppData\Local\Temp\RSPC57D.tmp" with cont
 ".\Debug\TranslationDlg.sbr"
 ".\Debug\TransposeDlg.sbr"
 ".\Debug\ZoomDlg.sbr"
-".\Debug\IFourieDlg.sbr"]
-Creating command line "bscmake.exe @"C:\Users\建生\AppData\Local\Temp\RSPC57D.tmp""
+".\Debug\RobertsDlg.sbr"
+".\Debug\PrewittDlg.sbr"
+".\Debug\SobelDlg.sbr"]
+Creating command line "bscmake.exe @"C:\Users\建生\AppData\Local\Temp\RSP56B4.tmp""
 Creating browse info file...
 <h3>Output Window</h3>
 

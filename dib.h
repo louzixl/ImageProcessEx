@@ -53,8 +53,11 @@ public:
 	void FastFourie(complex<double> *pCTData, complex<double> *pCFData, int nLevel);
 	void Fourie(complex<double> *pCTData, int nWidth, int nHeight, complex<double> *pCFData);
 	void IFourie(complex<double> *pCFData, complex<double> *pCTData, int nWidth, int nHeight);
-//	void ButterWorthLowPass(LPBYTE lpImage, int nWidth, int nHeight, int nRadius);
-//	void ButterWorthHighPass(LPBYTE lpImage, int nWidth, int nHeight, int nRadius);
+	void ButterWorthLowPass(LPBYTE lpImage, int nWidth, int nHeight, int nRadius);
+	void ButterWorthHighPass(LPBYTE lpImage, int nWidth, int nHeight, int nRadius);
+	BOOL RobertsDIB();
+	BOOL PrewittDIB(int tag);
+	BOOL SobelDIB(int tag);
 
 	LPBYTE RETURN()
 	{

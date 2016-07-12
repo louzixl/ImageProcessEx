@@ -17,6 +17,11 @@
 #define IDD_DIALOG_TRANSPOSE            139
 #define IDD_DIALOG_FOURIE               140
 #define IDD_DIALOG_IFOURIE              141
+#define IDD_DIALOG_BWLOWPASS            142
+#define IDD_DIALOG_BWHIGHPASS           143
+#define IDD_DIALOG_ROBERTS              144
+#define IDD_DIALOG_PREWITT              145
+#define IDD_DIALOG_SOBEL                146
 #define IDC_EDIT_RAWCIN                 1000
 #define IDC_BUTTON_RAWVIEW              1003
 #define IDC_EDIT_BMPCIN                 1004
@@ -109,8 +114,38 @@
 #define IDC_STATIC_IFOURIEIN            1072
 #define IDC_EDIT_IFOURIEIN              1073
 #define IDC_STATIC_IFOURIEOUT           1074
+#define IDC_STATIC_BWLOWPASSIN          1074
 #define IDC_EDIT_IFOURIEOUT             1075
+#define IDC_EDIT_BWLOWPASSIN            1075
 #define IDC_BUTTON_IFOURIEOUT           1076
+#define IDC_BUTTON_BWLOWPASSIN          1076
+#define IDC_STATIC_BWLOWPASSOUT         1077
+#define IDC_EDIT_BWLOWPASSOUT           1078
+#define IDC_BUTTON_BWLOWPASSOUT         1079
+#define IDC_STATIC_BWHIGHPASSIN         1080
+#define IDC_EDIT_BWHIGHPASSIN           1081
+#define IDC_BUTTON_BWHIGHPASSIN         1082
+#define IDC_STATIC_BWHIGHPASSOUT        1083
+#define IDC_EDIT_BWHIGHPASSOUT          1084
+#define IDC_BUTTON_BWHIGHPASSOUT        1085
+#define IDC_STATIC_ROBERTSIN            1086
+#define IDC_EDIT_ROBERTSIN              1087
+#define IDC_BUTTON_ROBERTSIN            1088
+#define IDC_STATIC_ROBERTSOUT           1089
+#define IDC_EDIT_ROBERTSSOUT            1090
+#define IDC_BUTTON_ROBERTSOUT           1091
+#define IDC_STATIC_PREWITTIN            1092
+#define IDC_EDIT_PREWITTIN              1093
+#define IDC_BUTTON_PREWITTIN            1094
+#define IDC_STATIC_PREWITTOUT           1095
+#define IDC_EDIT_PREWITTOUT             1096
+#define IDC_BUTTON_PREWITTOUT           1097
+#define IDC_STATIC_SOBELIN              1098
+#define IDC_EDIT_SOBELIN                1099
+#define IDC_BUTTON_SOBELIN              1100
+#define IDC_STATIC_SOBELOUT             1101
+#define IDC_EDIT_SOBELOUT               1102
+#define IDC_BUTTON_SOBELOUT             1103
 #define ID_RAWTOBMP                     32771
 #define ID_LINEARENHENCE                32772
 #define ID_HISTOEQUIVALIZE              32773
@@ -123,15 +158,20 @@
 #define ID_TRANSPOSITION                32781
 #define ID_FOURIE                       32782
 #define ID_IFOURIE                      32783
+#define ID_BWLOWPASS                    32784
+#define ID_BWHIGHPASS                   32785
+#define ID_ROBERTS                      32786
+#define ID_PREWITT                      32787
+#define ID_SOBEL                        32788
 
 // Next default values for new objects
 // 
 #ifdef APSTUDIO_INVOKED
 #ifndef APSTUDIO_READONLY_SYMBOLS
 #define _APS_3D_CONTROLS                     1
-#define _APS_NEXT_RESOURCE_VALUE        142
-#define _APS_NEXT_COMMAND_VALUE         32784
-#define _APS_NEXT_CONTROL_VALUE         1074
+#define _APS_NEXT_RESOURCE_VALUE        147
+#define _APS_NEXT_COMMAND_VALUE         32789
+#define _APS_NEXT_CONTROL_VALUE         1104
 #define _APS_NEXT_SYMED_VALUE           101
 #endif
 #endif
